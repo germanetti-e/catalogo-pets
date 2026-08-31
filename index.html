@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Saboriemos Pets | Catálogo</title>
 
@@ -11,10 +17,16 @@
         content="Catálogo de productos Saboriemos Pets."
     >
 
-    <link rel="stylesheet" href="css/styles.css">
+    <link
+        rel="stylesheet"
+        href="css/styles.css"
+    >
+
 </head>
 
+
 <body>
+
 
     <!-- =====================================================
          HEADER
@@ -24,6 +36,7 @@
 
         <div class="header-container">
 
+
             <!-- MENÚ HAMBURGUESA -->
 
             <button
@@ -31,22 +44,28 @@
                 type="button"
                 aria-label="Abrir menú"
             >
+
                 ☰
+
             </button>
+
 
 
             <!-- LOGO -->
 
             <a
-    href="index.html"
-    class="logo"
-    aria-label="Saboriemos Pets - Inicio"
->
-    <img
-        src="assets/logo/Logo_Saboriemos_Pets-06%20(4).png"
-        alt="Saboriemos Pets"
-    >
-</a>
+                href="index.html"
+                class="logo"
+                aria-label="Saboriemos Pets - Inicio"
+            >
+
+                <img
+                    src="assets/logo/Logo_Saboriemos_Pets-06%20(4).png"
+                    alt="Saboriemos Pets"
+                >
+
+            </a>
+
 
 
             <!-- CARRITO -->
@@ -75,6 +94,7 @@
     </header>
 
 
+
     <!-- =====================================================
          CONTENIDO PRINCIPAL
     ====================================================== -->
@@ -88,13 +108,14 @@
 
         <section class="hero">
 
-    <img
-        src="assets/banners/banner_sabriemos_pets.png"
-        alt="Saboriemos Pets - Snacks saludables con proteína real para tu mascota"
-        class="hero-banner"
-    >
+            <img
+                src="assets/banners/banner_sabriemos_pets.png"
+                alt="Saboriemos Pets - Snacks saludables con proteína real para tu mascota"
+                class="hero-banner"
+            >
 
-</section>
+        </section>
+
 
 
         <!-- =================================================
@@ -105,29 +126,32 @@
 
             <div class="section-container">
 
+
                 <div class="section-heading">
 
-    <h2>
-        ¿Cómo quieres comprar?
-    </h2>
+                    <h2>
+                        ¿Cómo quieres comprar?
+                    </h2>
 
-    <p>
-        Selecciona tu tipo de cliente para ver
-        los productos y precios correspondientes.
-    </p>
+                    <p>
+                        Selecciona tu tipo de cliente para ver
+                        los productos y precios correspondientes.
+                    </p>
 
-</div>
+                </div>
+
 
 
                 <div class="customer-cards">
 
 
-                    <!-- MAYORISTA -->
+                    <!-- =================================================
+                         MAYORISTA
+                    ================================================== -->
 
-                    <button
+                    <a
+                        href="catalogo.html?tipo=mayorista"
                         class="customer-card"
-                        type="button"
-                        data-customer-type="mayorista"
                     >
 
                         <div class="customer-icon">
@@ -151,15 +175,17 @@
                             →
                         </span>
 
-                    </button>
+                    </a>
 
 
-                    <!-- DISTRIBUIDOR -->
 
-                    <button
+                    <!-- =================================================
+                         DISTRIBUIDOR
+                    ================================================== -->
+
+                    <a
+                        href="catalogo.html?tipo=distribuidor"
                         class="customer-card"
-                        type="button"
-                        data-customer-type="distribuidor"
                     >
 
                         <div class="customer-icon">
@@ -183,15 +209,17 @@
                             →
                         </span>
 
-                    </button>
+                    </a>
 
 
-                    <!-- CLIENTE FINAL -->
 
-                    <button
+                    <!-- =================================================
+                         CLIENTE FINAL
+                    ================================================== -->
+
+                    <a
+                        href="catalogo.html?tipo=cliente_final"
                         class="customer-card"
-                        type="button"
-                        data-customer-type="cliente_final"
                     >
 
                         <div class="customer-icon">
@@ -215,13 +243,14 @@
                             →
                         </span>
 
-                    </button>
+                    </a>
 
                 </div>
 
             </div>
 
         </section>
+
 
 
         <!-- =================================================
@@ -233,6 +262,7 @@
             <div class="section-container">
 
                 <div class="help-card">
+
 
                     <div class="help-content">
 
@@ -246,6 +276,7 @@
                         </p>
 
                     </div>
+
 
 
                     <a
@@ -266,6 +297,7 @@
     </main>
 
 
+
     <!-- =====================================================
          MENÚ INFERIOR
     ====================================================== -->
@@ -274,6 +306,9 @@
         class="bottom-nav"
         aria-label="Navegación principal"
     >
+
+
+        <!-- INICIO -->
 
         <a
             href="index.html"
@@ -291,6 +326,9 @@
         </a>
 
 
+
+        <!-- PROMOCIONES -->
+
         <a
             href="#"
             class="bottom-nav-item"
@@ -306,6 +344,9 @@
 
         </a>
 
+
+
+        <!-- MIS DATOS -->
 
         <a
             href="#"
@@ -325,11 +366,7 @@
     </nav>
 
 
-    <!-- =====================================================
-         JAVASCRIPT
-    ====================================================== -->
-
-    <script src="js/app.js"></script>
 
 </body>
+
 </html>
