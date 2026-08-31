@@ -1,1 +1,767 @@
+/* =========================================================
+   SABORIEMOS PETS
+   Catálogo de productos
+   ========================================================= */
 
+
+/* =========================================================
+   VARIABLES
+   ========================================================= */
+
+:root {
+    --primary: #2f8f5b;
+    --primary-dark: #237347;
+    --primary-light: #e9f6ee;
+
+    --secondary: #f4a261;
+
+    --text: #222222;
+    --text-light: #666666;
+
+    --background: #ffffff;
+    --background-soft: #f7f8f6;
+
+    --border: #e5e5e5;
+
+    --max-width: 1200px;
+
+    --radius: 18px;
+    --radius-small: 12px;
+
+    --shadow:
+        0 8px 30px rgba(0, 0, 0, 0.07);
+
+    --transition:
+        0.25s ease;
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    color: var(--text);
+
+    background: var(--background);
+
+    line-height: 1.5;
+}
+
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+
+button {
+    cursor: pointer;
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header {
+    width: 100%;
+
+    background: #ffffff;
+
+    border-bottom:
+        1px solid var(--border);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+}
+
+
+.header-container {
+    max-width: var(--max-width);
+
+    margin: 0 auto;
+
+    padding:
+        18px 24px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+
+/* LOGO */
+
+.logo {
+    display: flex;
+
+    flex-direction: column;
+
+    font-size: 21px;
+
+    font-weight: 800;
+
+    line-height: 1;
+
+    color: var(--primary);
+}
+
+
+.logo span {
+    margin-top: 4px;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    color: var(--text);
+}
+
+
+/* NAV */
+
+.main-nav {
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+}
+
+
+.nav-link {
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: var(--text-light);
+
+    transition:
+        color var(--transition);
+}
+
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary);
+}
+
+
+/* MOBILE MENU */
+
+.menu-button {
+    display: none;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 24px;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary-light),
+            #ffffff
+        );
+
+    padding:
+        90px 24px 80px;
+}
+
+
+.hero-content {
+    max-width: var(--max-width);
+
+    margin: 0 auto;
+}
+
+
+.hero-kicker {
+    margin-bottom: 14px;
+
+    color: var(--primary);
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+
+.hero h1 {
+    max-width: 750px;
+
+    font-size:
+        clamp(42px, 6vw, 72px);
+
+    line-height: 1.05;
+
+    letter-spacing: -2px;
+
+    margin-bottom: 24px;
+}
+
+
+.hero h1 span {
+    color: var(--primary);
+}
+
+
+.hero-description {
+    max-width: 620px;
+
+    color: var(--text-light);
+
+    font-size: 18px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.section-container {
+    max-width: var(--max-width);
+
+    margin: 0 auto;
+
+    padding:
+        80px 24px;
+}
+
+
+.section-heading {
+    max-width: 700px;
+
+    margin-bottom: 45px;
+}
+
+
+.section-kicker {
+    margin-bottom: 10px;
+
+    color: var(--primary);
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+
+.section-heading h2 {
+    margin-bottom: 12px;
+
+    font-size:
+        clamp(30px, 4vw, 44px);
+
+    line-height: 1.1;
+
+    letter-spacing: -1px;
+}
+
+
+.section-heading p:last-child {
+    color: var(--text-light);
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   TIPO DE CLIENTE
+   ========================================================= */
+
+.customer-type-section {
+    background: #ffffff;
+}
+
+
+.customer-cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 22px;
+}
+
+
+/* CUSTOMER CARD */
+
+.customer-card {
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    text-align: left;
+
+    min-height: 300px;
+
+    padding: 32px;
+
+    background: #ffffff;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition),
+        border-color var(--transition);
+}
+
+
+.customer-card:hover {
+    transform:
+        translateY(-6px);
+
+    border-color:
+        var(--primary);
+
+    box-shadow:
+        0 16px 40px rgba(0, 0, 0, 0.10);
+}
+
+
+.customer-card:focus-visible {
+    outline:
+        3px solid var(--primary);
+
+    outline-offset: 3px;
+}
+
+
+/* ICON */
+
+.customer-icon {
+    width: 58px;
+
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-bottom: 28px;
+
+    background:
+        var(--primary-light);
+
+    border-radius:
+        16px;
+
+    font-size: 28px;
+}
+
+
+/* CONTENT */
+
+.customer-card-content {
+    flex: 1;
+}
+
+
+.customer-card h3 {
+    margin-bottom: 10px;
+
+    font-size: 25px;
+
+    line-height: 1.2;
+}
+
+
+.customer-card p {
+    max-width: 280px;
+
+    color: var(--text-light);
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+/* ARROW */
+
+.customer-arrow {
+    margin-top: 25px;
+
+    color: var(--primary);
+
+    font-size: 25px;
+
+    font-weight: 600;
+
+    transition:
+        transform var(--transition);
+}
+
+
+.customer-card:hover .customer-arrow {
+    transform:
+        translateX(7px);
+}
+
+
+/* =========================================================
+   PRODUCTOS
+   ========================================================= */
+
+.featured-products {
+    background:
+        var(--background-soft);
+}
+
+
+.products-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+
+/* =========================================================
+   PRODUCT CARD
+   ========================================================= */
+
+.product-card {
+    background: #ffffff;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        var(--radius-small);
+
+    overflow: hidden;
+
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition);
+}
+
+
+.product-card:hover {
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        var(--shadow);
+}
+
+
+.product-image {
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    object-fit: contain;
+
+    background: #ffffff;
+
+    padding: 20px;
+}
+
+
+.product-info {
+    padding: 20px;
+}
+
+
+.product-brand {
+    margin-bottom: 5px;
+
+    color: var(--text-light);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+
+.product-name {
+    margin-bottom: 12px;
+
+    font-size: 16px;
+
+    font-weight: 700;
+}
+
+
+.product-price {
+    color: var(--primary);
+
+    font-size: 20px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer {
+    background:
+        #202522;
+
+    color:
+        #ffffff;
+}
+
+
+.footer-container {
+    max-width: var(--max-width);
+
+    margin: 0 auto;
+
+    padding:
+        45px 24px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+
+.footer-brand strong {
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-size: 16px;
+}
+
+
+.footer-brand p {
+    color:
+        rgba(255, 255, 255, 0.65);
+
+    font-size: 13px;
+}
+
+
+.footer-copy {
+    color:
+        rgba(255, 255, 255, 0.55);
+
+    font-size: 12px;
+
+    text-align: right;
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .customer-cards {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .customer-card {
+        min-height: auto;
+
+        flex-direction: row;
+
+        align-items: center;
+
+        gap: 22px;
+    }
+
+
+    .customer-icon {
+        flex-shrink: 0;
+
+        margin-bottom: 0;
+    }
+
+
+    .customer-arrow {
+        margin-top: 0;
+
+        margin-left: auto;
+    }
+
+
+    .products-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .header-container {
+        padding:
+            15px 18px;
+    }
+
+
+    .main-nav {
+        display: none;
+    }
+
+
+    .menu-button {
+        display: block;
+    }
+
+
+    .hero {
+        padding:
+            65px 20px 60px;
+    }
+
+
+    .hero h1 {
+        font-size: 42px;
+
+        letter-spacing: -1.5px;
+    }
+
+
+    .hero-description {
+        font-size: 16px;
+    }
+
+
+    .section-container {
+        padding:
+            60px 20px;
+    }
+
+
+    .section-heading {
+        margin-bottom: 30px;
+    }
+
+
+    .customer-card {
+        padding: 24px;
+
+        gap: 15px;
+    }
+
+
+    .customer-icon {
+        width: 48px;
+
+        height: 48px;
+
+        font-size: 22px;
+    }
+
+
+    .customer-card h3 {
+        font-size: 20px;
+    }
+
+
+    .customer-card p {
+        font-size: 14px;
+    }
+
+
+    .customer-arrow {
+        font-size: 20px;
+    }
+
+
+    .products-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .footer-container {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    .footer-copy {
+        text-align: left;
+    }
+
+}
