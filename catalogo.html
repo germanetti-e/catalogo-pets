@@ -1,1 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Catálogo | Saboriemos Pets</title>
+
+    <meta
+        name="description"
+        content="Catálogo de productos Saboriemos Pets."
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/styles.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="header">
+
+        <div class="header-container">
+
+            <!-- MENÚ -->
+
+            <button
+                class="menu-button"
+                type="button"
+                aria-label="Abrir menú"
+            >
+                ☰
+            </button>
+
+
+            <!-- LOGO -->
+
+            <a
+                href="index.html"
+                class="logo"
+                aria-label="Saboriemos Pets - Inicio"
+            >
+
+                <img
+                    src="assets/logo/Logo_Saboriemos_Pets-06%20(4).png"
+                    alt="Saboriemos Pets"
+                >
+
+            </a>
+
+
+            <!-- CARRITO -->
+
+            <button
+                class="cart-button"
+                type="button"
+                aria-label="Ver carrito"
+            >
+
+                <span class="cart-icon">
+                    🛒
+                </span>
+
+                <span
+                    class="cart-count"
+                    id="cart-count"
+                >
+                    0
+                </span>
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         CONTENIDO DEL CATÁLOGO
+    ====================================================== -->
+
+    <main class="catalog-page">
+
+
+        <!-- ENCABEZADO DEL CATÁLOGO -->
+
+        <section class="catalog-header">
+
+            <div class="section-container">
+
+                <a
+                    href="index.html"
+                    class="back-link"
+                >
+                    ← Volver
+                </a>
+
+
+                <p
+                    class="section-kicker"
+                    id="customer-kicker"
+                >
+                    CATÁLOGO
+                </p>
+
+
+                <h1 id="catalog-title">
+                    Productos
+                </h1>
+
+
+                <p id="catalog-description">
+                    Consulta nuestros productos
+                    disponibles.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PRODUCTOS
+        ================================================== -->
+
+        <section class="products-section">
+
+            <div class="section-container">
+
+                <div
+                    class="products-grid"
+                    id="products-grid"
+                >
+
+                    <!-- Los productos serán cargados
+                         dinámicamente -->
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         MENÚ INFERIOR
+    ====================================================== -->
+
+    <nav
+        class="bottom-nav"
+        aria-label="Navegación principal"
+    >
+
+        <a
+            href="index.html"
+            class="bottom-nav-item"
+        >
+
+            <span class="bottom-nav-icon">
+                ⌂
+            </span>
+
+            <span>
+                Inicio
+            </span>
+
+        </a>
+
+
+        <a
+            href="#"
+            class="bottom-nav-item"
+        >
+
+            <span class="bottom-nav-icon">
+                ✦
+            </span>
+
+            <span>
+                Promociones
+            </span>
+
+        </a>
+
+
+        <a
+            href="#"
+            class="bottom-nav-item"
+        >
+
+            <span class="bottom-nav-icon">
+                ♙
+            </span>
+
+            <span>
+                Mis datos
+            </span>
+
+        </a>
+
+    </nav>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="js/catalogo.js"></script>
+
+</body>
+
+</html>
