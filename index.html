@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Catálogo Pets | Saboriemos</title>
+    <title>Saboriemos Pets | Catálogo</title>
 
     <meta
         name="description"
-        content="Catálogo de productos para mascotas de Saboriemos."
+        content="Catálogo de productos Saboriemos Pets."
     >
 
     <link rel="stylesheet" href="css/styles.css">
@@ -16,31 +16,56 @@
 
 <body>
 
-    <!-- =========================
+    <!-- =====================================================
          HEADER
-    ========================== -->
+    ====================================================== -->
 
     <header class="header">
 
         <div class="header-container">
 
-            <a href="index.html" class="logo">
+            <!-- MENÚ HAMBURGUESA -->
+
+            <button
+                class="menu-button"
+                type="button"
+                aria-label="Abrir menú"
+            >
+                ☰
+            </button>
+
+
+            <!-- LOGO -->
+
+            <a
+                href="index.html"
+                class="logo"
+                aria-label="Saboriemos Pets - Inicio"
+            >
                 SABORIEMOS
                 <span>PETS</span>
             </a>
 
-            <nav class="main-nav">
-                <a href="index.html" class="nav-link active">
-                    Inicio
-                </a>
 
-                <a href="#" class="nav-link">
-                    Catálogo
-                </a>
-            </nav>
+            <!-- CARRITO -->
 
-            <button class="menu-button" aria-label="Abrir menú">
-                ☰
+            <button
+                class="cart-button"
+                type="button"
+                aria-label="Ver carrito"
+            >
+
+                <span class="cart-icon">
+                    🛒
+                </span>
+
+                <span
+                    class="cart-count"
+                    id="cart-count"
+                >
+                    0
+                </span>
+
             </button>
 
         </div>
@@ -48,11 +73,16 @@
     </header>
 
 
-    <!-- =========================
-         HERO
-    ========================== -->
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+    ====================================================== -->
 
     <main>
+
+
+        <!-- =================================================
+             BANNER
+        ================================================== -->
 
         <section class="hero">
 
@@ -77,9 +107,9 @@
         </section>
 
 
-        <!-- =========================
+        <!-- =================================================
              TIPO DE CLIENTE
-        ========================== -->
+        ================================================== -->
 
         <section class="customer-type-section">
 
@@ -105,10 +135,12 @@
 
                 <div class="customer-cards">
 
+
                     <!-- MAYORISTA -->
 
                     <button
                         class="customer-card"
+                        type="button"
                         data-customer-type="mayorista"
                     >
 
@@ -140,6 +172,7 @@
 
                     <button
                         class="customer-card"
+                        type="button"
                         data-customer-type="distribuidor"
                     >
 
@@ -171,6 +204,7 @@
 
                     <button
                         class="customer-card"
+                        type="button"
                         data-customer-type="cliente_final"
                     >
 
@@ -204,40 +238,42 @@
         </section>
 
 
-        <!-- =========================
-             PRODUCTOS DESTACADOS
-             Por ahora vacío.
-             Se alimentará desde Sheets.
-        ========================== -->
+        <!-- =================================================
+             AYUDA / WHATSAPP
+        ================================================== -->
 
-        <section
-            class="featured-products"
-            id="featured-products"
-        >
+        <section class="help-section">
 
             <div class="section-container">
 
-                <div class="section-heading">
+                <div class="help-card">
 
-                    <p class="section-kicker">
-                        NUESTROS PRODUCTOS
-                    </p>
+                    <div class="help-content">
 
-                    <h2>
-                        Productos destacados
-                    </h2>
+                        <p class="section-kicker">
+                            ¿NECESITAS AYUDA?
+                        </p>
 
-                </div>
+                        <h2>
+                            ¿Necesitas algo más?
+                        </h2>
 
-                <div
-                    id="products-container"
-                    class="products-grid"
-                >
+                        <p>
+                            Este canal es únicamente para resolver
+                            dudas sobre productos o disponibilidad.
+                        </p>
 
-                    <!--
-                        Los productos se cargarán
-                        posteriormente desde Google Sheets.
-                    -->
+                    </div>
+
+
+                    <a
+                        href="https://wa.me/573239445016"
+                        class="whatsapp-button"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Consultar por WhatsApp
+                    </a>
 
                 </div>
 
@@ -248,41 +284,68 @@
     </main>
 
 
-    <!-- =========================
-         FOOTER
-    ========================== -->
+    <!-- =====================================================
+         MENÚ INFERIOR
+    ====================================================== -->
 
-    <footer class="footer">
+    <nav
+        class="bottom-nav"
+        aria-label="Navegación principal"
+    >
 
-        <div class="footer-container">
+        <a
+            href="index.html"
+            class="bottom-nav-item active"
+        >
 
-            <div class="footer-brand">
+            <span class="bottom-nav-icon">
+                ⌂
+            </span>
 
-                <strong>
-                    SABORIEMOS PETS
-                </strong>
+            <span>
+                Inicio
+            </span>
 
-                <p>
-                    Catálogo de productos para mascotas.
-                </p>
-
-            </div>
-
-            <div class="footer-copy">
-
-                © <span id="current-year"></span>
-                Saboriemos. Todos los derechos reservados.
-
-            </div>
-
-        </div>
-
-    </footer>
+        </a>
 
 
-    <!-- =========================
+        <a
+            href="#"
+            class="bottom-nav-item"
+        >
+
+            <span class="bottom-nav-icon">
+                ✦
+            </span>
+
+            <span>
+                Promociones
+            </span>
+
+        </a>
+
+
+        <a
+            href="#"
+            class="bottom-nav-item"
+        >
+
+            <span class="bottom-nav-icon">
+                ♙
+            </span>
+
+            <span>
+                Mis datos
+            </span>
+
+        </a>
+
+    </nav>
+
+
+    <!-- =====================================================
          JAVASCRIPT
-    ========================== -->
+    ====================================================== -->
 
     <script src="js/app.js"></script>
 
