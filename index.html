@@ -1,938 +1,290 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Saboriemos Pets — Catalogo Mayorista</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet" />
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  :root {
-    --gold: #897831;
-    --teal: #23575d;
-    --teal-dark: #1a4247;
-    --teal-deep: #0f2d31;
-    --green: #4f6e29;
-    --cream: #FFECD2;
-    --sand: #C2C29D;
-    --white: #ffffff;
-  }
+    <title>Catálogo Pets | Saboriemos</title>
 
-  html { scroll-behavior: smooth; }
+    <meta
+        name="description"
+        content="Catálogo de productos para mascotas de Saboriemos."
+    >
 
-  body {
-    font-family: 'Quicksand', sans-serif;
-    background: var(--cream);
-    color: #2a2520;
-    min-height: 100vh;
-  }
-
-  ::-webkit-scrollbar { width: 5px; }
-  ::-webkit-scrollbar-track { background: var(--cream); }
-  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
-
-  /* ============================
-     ANIMATIONS
-  ============================ */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(40px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50%       { transform: translateY(-12px) rotate(2deg); }
-  }
-  @keyframes grain {
-    0%,100% { transform: translate(0,0); }
-    25%     { transform: translate(-1%,1%); }
-    50%     { transform: translate(1%,-1%); }
-    75%     { transform: translate(-1%,-1%); }
-  }
-  @keyframes barGrow {
-    from { height: 0; }
-  }
-  @keyframes shimmer {
-    from { background-position: -200% center; }
-    to   { background-position: 200% center; }
-  }
-
-  .fade-up { animation: fadeUp 0.7s ease both; }
-  .delay-1 { animation-delay: 0.1s; }
-  .delay-2 { animation-delay: 0.2s; }
-  .delay-3 { animation-delay: 0.35s; }
-  .delay-4 { animation-delay: 0.5s; }
-  .delay-5 { animation-delay: 0.65s; }
-
-  /* ============================
-     HERO
-  ============================ */
-  #hero {
-    background: linear-gradient(145deg, var(--teal) 0%, var(--teal-dark) 60%, var(--teal-deep) 100%);
-    min-height: 100vh;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 80px 24px;
-    overflow: hidden;
-    text-align: center;
-  }
-
-  #hero::before {
-    content: '';
-    position: absolute; inset: -50%;
-    width: 200%; height: 200%;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
-    opacity: 0.35; pointer-events: none;
-    animation: grain 0.6s steps(2) infinite;
-    z-index: 0;
-  }
-
-  .hero-ring {
-    position: absolute;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .hero-ring-1 {
-    width: 520px; height: 520px;
-    border: 1px solid rgba(137,120,49,0.14);
-    top: -110px; right: -160px;
-  }
-  .hero-ring-2 {
-    width: 310px; height: 310px;
-    border: 1px solid rgba(194,194,157,0.09);
-    bottom: 40px; left: -90px;
-  }
-  .hero-blob-1 {
-    position: absolute; width: 130px; height: 130px;
-    background: rgba(137,120,49,0.11); border-radius: 50%;
-    top: 22%; left: 7%;
-    animation: float 6s ease-in-out infinite;
-    z-index: 1; pointer-events: none;
-  }
-  .hero-blob-2 {
-    position: absolute; width: 64px; height: 64px;
-    background: rgba(255,236,210,0.07); border-radius: 50%;
-    bottom: 26%; right: 9%;
-    animation: float 8s ease-in-out infinite 1.2s;
-    z-index: 1; pointer-events: none;
-  }
-
-  .hero-inner { position: relative; z-index: 2; max-width: 720px; }
-
-  .brand-tag {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: rgba(137,120,49,0.18);
-    border: 1px solid rgba(137,120,49,0.38);
-    border-radius: 40px; padding: 6px 18px 6px 8px;
-    margin-bottom: 28px;
-  }
-  .brand-tag-dot {
-    width: 28px; height: 28px; border-radius: 50%;
-    background: var(--gold);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .brand-tag span {
-    color: var(--sand); font-size: 11px; font-weight: 700;
-    letter-spacing: 2px; text-transform: uppercase;
-  }
-
-  #hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(38px, 6.5vw, 74px);
-    font-weight: 900;
-    color: var(--cream);
-    line-height: 1.08;
-    letter-spacing: -1px;
-    margin-bottom: 18px;
-  }
-  #hero h1 em {
-    font-style: italic;
-    background: linear-gradient(90deg, var(--gold), #c9b46a, var(--gold));
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: shimmer 4s linear infinite;
-  }
-
-  .hero-divider {
-    width: 60px; height: 3px;
-    background: linear-gradient(90deg, var(--gold), var(--sand));
-    border-radius: 2px;
-    margin: 22px auto 26px;
-  }
-
-  #hero p.subtitle {
-    font-size: clamp(16px, 2.5vw, 20px);
-    color: var(--sand);
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    line-height: 1.55;
-    margin-bottom: 44px;
-  }
-
-  .chips {
-    display: flex; gap: 10px; flex-wrap: wrap;
-    justify-content: center; margin-bottom: 52px;
-  }
-  .chip {
-    background: rgba(255,236,210,0.07);
-    border: 1px solid rgba(255,236,210,0.18);
-    color: var(--cream);
-    padding: 8px 18px;
-    border-radius: 30px; font-size: 13px; font-weight: 600;
-  }
-
-  .scroll-hint {
-    display: flex; flex-direction: column; align-items: center; gap: 6px;
-    opacity: 0.55;
-  }
-  .scroll-hint span {
-    color: var(--sand); font-size: 10px;
-    letter-spacing: 2px; text-transform: uppercase;
-  }
-  .scroll-line {
-    width: 1px; height: 32px;
-    background: linear-gradient(180deg, var(--sand), transparent);
-  }
-
-  /* ============================
-     PHILOSOPHY
-  ============================ */
-  #philosophy {
-    background: var(--white);
-    padding: 90px 24px;
-  }
-  .section-inner { max-width: 980px; margin: 0 auto; }
-
-  .section-label {
-    color: var(--gold); font-size: 11px; font-weight: 700;
-    letter-spacing: 2.5px; text-transform: uppercase;
-    margin-bottom: 12px; display: block;
-  }
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(26px, 4vw, 44px);
-    font-weight: 700; color: var(--teal); line-height: 1.2;
-  }
-  .section-rule {
-    width: 48px; height: 3px;
-    background: var(--gold); border-radius: 2px;
-    margin: 22px auto 0;
-  }
-  .section-header { text-align: center; margin-bottom: 56px; }
-
-  .philo-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 24px;
-  }
-  .philo-card {
-    border-radius: 16px; padding: 32px 28px;
-    border-top: 3px solid;
-    opacity: 0; transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-  }
-  .philo-card.visible { opacity: 1; transform: translateY(0); }
-
-  .philo-icon {
-    width: 44px; height: 44px; border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 20px;
-    font-family: 'Playfair Display', serif;
-    color: #fff; font-size: 14px; font-weight: 700; letter-spacing: 1px;
-  }
-  .philo-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px; font-weight: 700; color: #2a2520;
-    margin-bottom: 10px;
-  }
-  .philo-card p { font-size: 14px; color: #777; line-height: 1.65; }
-
-  /* ============================
-     STAIRCASE
-  ============================ */
-  #staircase { background: var(--cream); padding: 90px 24px; }
-
-  .stair-wrap {
-    background: var(--white); border-radius: 24px;
-    padding: 48px 40px 0;
-    box-shadow: 0 4px 40px rgba(35,87,93,0.08);
-    overflow: hidden;
-  }
-  .stair-bars {
-    display: flex; align-items: flex-end;
-    justify-content: center; gap: 8px; height: 280px;
-  }
-  .stair-col {
-    display: flex; flex-direction: column;
-    align-items: center; flex: 1;
-  }
-  .stair-price {
-    margin-bottom: 10px; text-align: center;
-    opacity: 0; transform: translateY(10px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-  }
-  .stair-price.visible { opacity: 1; transform: translateY(0); }
-  .stair-price p:first-child {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px; font-weight: 700;
-  }
-  .stair-price p:last-child {
-    font-size: 11px; color: #999; margin-top: 2px; font-weight: 600;
-  }
-
-  .stair-track {
-    width: 80%; background: #f0ebe4;
-    border-radius: 12px 12px 0 0; height: 200px;
-    display: flex; align-items: flex-end; overflow: hidden;
-  }
-  .stair-bar {
-    width: 100%; height: 0;
-    border-radius: 10px 10px 0 0;
-    display: flex; align-items: flex-start;
-    justify-content: center; padding-top: 12px;
-    transition: height 0.9s cubic-bezier(0.34,1.3,0.64,1);
-  }
-  .stair-bar span {
-    color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 1px;
-  }
-  .stair-label {
-    color: #fff; padding: 8px 16px;
-    border-radius: 0 0 10px 10px;
-    font-size: 12px; font-weight: 700;
-    letter-spacing: 0.5px; text-align: center;
-    width: 80%; opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-  .stair-label.visible { opacity: 1; }
-
-  .stair-arrow {
-    display: flex; align-items: center;
-    padding-bottom: 40px; flex-shrink: 0;
-  }
-
-  .stair-legend {
-    background: #f9f5ef; margin: 24px -40px 0;
-    padding: 16px 40px;
-    display: flex; gap: 24px; flex-wrap: wrap;
-    justify-content: center;
-  }
-  .legend-item {
-    display: flex; align-items: center; gap: 8px;
-  }
-  .legend-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%; flex-shrink: 0;
-  }
-  .legend-item span {
-    font-size: 12px; color: #888; font-weight: 600;
-  }
-
-  /* ============================
-     CATALOG
-  ============================ */
-  #catalog { background: #f4ede0; padding: 90px 24px 110px; }
-
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-    gap: 24px;
-  }
-  @media (max-width: 640px) { .card-grid { grid-template-columns: 1fr; } }
-
-  .product-card {
-    background: var(--white); border-radius: 20px;
-    border: 1.5px solid #e5ddd0;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-    cursor: pointer; overflow: hidden;
-    transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
-    opacity: 0; transform: translateY(28px);
-  }
-  .product-card.visible { opacity: 1; transform: translateY(0); }
-  .product-card.active {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.14);
-  }
-
-  .card-image {
-    height: 160px; position: relative;
-    display: flex; align-items: center;
-    justify-content: center; overflow: hidden;
-  }
-  .card-bubble-1 {
-    position: absolute; width: 120px; height: 120px;
-    border-radius: 50%;
-    top: -20px; right: -20px;
-  }
-  .card-bubble-2 {
-    position: absolute; width: 70px; height: 70px;
-    border-radius: 50%;
-    bottom: -10px; left: 10px;
-  }
-  .card-icon-box {
-    width: 72px; height: 72px; border-radius: 16px;
-    display: flex; align-items: center; justify-content: center;
-    position: relative; z-index: 1;
-  }
-  .card-tag {
-    position: absolute; top: 12px; left: 12px;
-    color: #fff; font-size: 9px; font-weight: 700;
-    letter-spacing: 1.5px; padding: 3px 8px;
-    border-radius: 20px; text-transform: uppercase;
-  }
-  .card-weight {
-    position: absolute; bottom: 10px; right: 12px;
-    background: #fff; font-size: 11px; font-weight: 700;
-    padding: 2px 8px; border-radius: 20px;
-    border: 1px solid rgba(0,0,0,0.1);
-  }
-
-  .card-body { padding: 18px 20px 0; }
-  .card-label {
-    font-size: 11px; font-weight: 600;
-    letter-spacing: 1.2px; margin-bottom: 4px;
-    text-transform: uppercase; color: #999;
-  }
-  .card-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 17px; font-weight: 700; color: #2a2520;
-    line-height: 1.2; margin: 0 0 8px;
-  }
-  .card-desc { font-size: 12px; color: #888; line-height: 1.5; margin: 0 0 16px; }
-
-  .card-collapsed {
-    padding: 14px 20px 18px;
-    display: flex; align-items: center;
-    justify-content: space-between;
-    border-top: 1px solid #f0ebe4;
-  }
-  .card-collapsed p:first-child {
-    font-size: 10px; color: #aaa; font-weight: 600;
-    letter-spacing: 1px; margin-bottom: 2px;
-  }
-  .card-collapsed .price {
-    font-size: 20px; font-weight: 700;
-  }
-  .card-chevron {
-    width: 32px; height: 32px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-  }
-
-  .card-expanded {
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.4s ease;
-  }
-  .card-expanded.open { max-height: 320px; }
-
-  .price-rule { margin: 0 20px; }
-  .price-ladder { padding: 16px 20px 20px; }
-  .ladder-title {
-    font-size: 10px; color: #aaa; font-weight: 700;
-    letter-spacing: 1.5px; margin-bottom: 14px;
-    text-transform: uppercase;
-  }
-  .ladder-row {
-    display: flex; align-items: center;
-    justify-content: space-between;
-    padding: 10px 12px; border-radius: 10px;
-    border-left: 3px solid;
-    margin-bottom: 6px;
-  }
-  .ladder-row:last-child { margin-bottom: 0; }
-  .ladder-tier {
-    font-size: 10px; font-weight: 700;
-    letter-spacing: 0.8px; text-transform: uppercase; margin: 0;
-  }
-  .ladder-price {
-    font-size: 18px; font-weight: 700; color: #2a2520; margin: 0;
-  }
-  .ladder-pct {
-    font-size: 11px; font-weight: 700;
-    padding: 3px 8px; border-radius: 20px;
-  }
-
-  /* ============================
-     SUMMARY NOTE
-  ============================ */
-  .summary-note {
-    margin-top: 48px; background: var(--teal);
-    border-radius: 16px; padding: 28px 32px;
-    display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
-  }
-  .summary-icon {
-    width: 48px; height: 48px; flex-shrink: 0;
-    background: rgba(137,120,49,0.28); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .summary-note p:first-child {
-    color: var(--cream); font-weight: 700; font-size: 15px; margin-bottom: 4px;
-  }
-  .summary-note p:last-child {
-    color: var(--sand); font-size: 13px; line-height: 1.5;
-  }
-
-  /* ============================
-     FOOTER
-  ============================ */
-  footer {
-    background: #1a3e42; padding: 42px 24px;
-    text-align: center;
-  }
-  .footer-brand {
-    display: flex; align-items: center;
-    justify-content: center; gap: 10px; margin-bottom: 14px;
-  }
-  .footer-logo-dot {
-    width: 32px; height: 32px; border-radius: 50%;
-    background: var(--gold);
-    display: flex; align-items: center; justify-content: center;
-  }
-  footer h2 {
-    font-family: 'Playfair Display', serif;
-    color: var(--cream); font-size: 20px; font-weight: 700;
-  }
-  footer p { color: var(--sand); font-size: 13px; margin-bottom: 6px; }
-  footer small {
-    color: #5a8a8f; font-size: 11px; letter-spacing: 1px;
-    display: block;
-  }
-
-  /* ============================
-     SCROLL-IN OBSERVER
-  ============================ */
-  .observe { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
-  .observe.visible { opacity: 1; transform: translateY(0); }
-</style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
 
-<!-- ============ HERO ============ -->
-<section id="hero">
-  <div class="hero-ring hero-ring-1"></div>
-  <div class="hero-ring hero-ring-2"></div>
-  <div class="hero-blob-1"></div>
-  <div class="hero-blob-2"></div>
+    <!-- =========================
+         HEADER
+    ========================== -->
 
-  <div class="hero-inner">
+    <header class="header">
 
-    <div class="brand-tag fade-up">
-      <div class="brand-tag-dot">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <circle cx="5" cy="5" r="2" fill="white"/>
-          <circle cx="9" cy="3" r="1.5" fill="white"/>
-          <circle cx="11" cy="7" r="1.5" fill="white"/>
-          <ellipse cx="7" cy="10" rx="4" ry="3" fill="white"/>
-        </svg>
-      </div>
-      <span>Saboriemos Pets</span>
-    </div>
+        <div class="header-container">
 
-    <h1 class="fade-up delay-1">
-      Suplemento alimenticio<br>
-      <em>con proteina real</em>
-    </h1>
+            <a href="index.html" class="logo">
+                SABORIEMOS
+                <span>PETS</span>
+            </a>
 
-    <div class="hero-divider fade-up delay-2"></div>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link active">
+                    Inicio
+                </a>
 
-    <p class="subtitle fade-up delay-2">Nutricion Real, Precio Inteligente</p>
+                <a href="#" class="nav-link">
+                    Catálogo
+                </a>
+            </nav>
 
-    <div class="chips fade-up delay-3">
-      <span class="chip">Proteina Real</span>
-      <span class="chip">Sin Conservantes</span>
-      <span class="chip">Snacks Premium</span>
-      <span class="chip">Para tu Negocio</span>
-    </div>
+            <button class="menu-button" aria-label="Abrir menú">
+                ☰
+            </button>
 
-    <div class="scroll-hint fade-up delay-4">
-      <span>Ver catalogo</span>
-      <div class="scroll-line"></div>
-    </div>
+        </div>
 
-  </div>
-</section>
+    </header>
 
-<!-- ============ PHILOSOPHY ============ -->
-<section id="philosophy">
-  <div class="section-inner">
-    <div class="section-header observe">
-      <span class="section-label">Nuestra Filosofia</span>
-      <h2 class="section-title">Proteina real, sin excesos quimicos</h2>
-      <div class="section-rule"></div>
-    </div>
-    <div class="philo-grid">
-      <div class="philo-card observe" style="background:#fdf8ec; border-top-color:#897831;">
-        <div class="philo-icon" style="background:#897831;">I</div>
-        <h3>Ingredientes Reales</h3>
-        <p>Cada snack contiene proteina animal identificable: muslo de pollo, paticas, cabano. Sin rellenos ni enganos.</p>
-      </div>
-      <div class="philo-card observe" style="background:#e8f3f4; border-top-color:#23575d; transition-delay:0.12s;">
-        <div class="philo-icon" style="background:#23575d;">II</div>
-        <h3>Proceso Limpio</h3>
-        <p>Deshidratacion natural que preserva nutrientes sin necesidad de conservantes artificiales ni colorantes.</p>
-      </div>
-      <div class="philo-card observe" style="background:#edf2e6; border-top-color:#4f6e29; transition-delay:0.24s;">
-        <div class="philo-icon" style="background:#4f6e29;">III</div>
-        <h3>Precio Inteligente</h3>
-        <p>Escalera mayorista que beneficia a distribuidores y garantiza accesibilidad para el consumidor final.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ============ STAIRCASE ============ -->
-<section id="staircase">
-  <div class="section-inner">
-    <div class="section-header observe">
-      <span class="section-label">Modelo de Rentabilidad</span>
-      <h2 class="section-title">Escalera del 20% — Todos ganan</h2>
-      <p style="color:#888; font-size:14px; margin-top:12px; max-width:500px; margin-left:auto; margin-right:auto;">Un margen justo en cada nivel de la cadena, garantizando rentabilidad para mayoristas, distribuidores y tiendas.</p>
-    </div>
+    <!-- =========================
+         HERO
+    ========================== -->
 
-    <div class="stair-wrap">
-      <div class="stair-bars" id="stairBars">
+    <main>
 
-        <!-- Mayorista -->
-        <div class="stair-col" id="bar1">
-          <div class="stair-price">
-            <p style="color:#897831;">$2.271</p>
-            <p>Precio base</p>
-          </div>
-          <div class="stair-track">
-            <div class="stair-bar" style="background:linear-gradient(180deg,#897831cc,#897831); height:0;" data-target="45%">
-              <span>BASE</span>
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <p class="hero-kicker">
+                    SABORIEMOS PETS
+                </p>
+
+                <h1>
+                    Todo lo que tu mascota
+                    <span>necesita.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Encuentra nuestros productos y consulta
+                    los precios disponibles según tu tipo de cliente.
+                </p>
+
             </div>
-          </div>
-          <div class="stair-label" style="background:#897831;">Mayorista</div>
-        </div>
 
-        <!-- Arrow 1 -->
-        <div class="stair-arrow">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M5 12h14M15 8l4 4-4 4" stroke="#C2C29D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
+        </section>
 
-        <!-- Distribuidor -->
-        <div class="stair-col" id="bar2">
-          <div class="stair-price">
-            <p style="color:#23575d;">$2.725</p>
-            <p>+ 20% margen</p>
-          </div>
-          <div class="stair-track">
-            <div class="stair-bar" style="background:linear-gradient(180deg,#23575dcc,#23575d); height:0;" data-target="65%">
-              <span>+20%</span>
+
+        <!-- =========================
+             TIPO DE CLIENTE
+        ========================== -->
+
+        <section class="customer-type-section">
+
+            <div class="section-container">
+
+                <div class="section-heading">
+
+                    <p class="section-kicker">
+                        CATÁLOGO PETS
+                    </p>
+
+                    <h2>
+                        ¿Cómo quieres comprar?
+                    </h2>
+
+                    <p>
+                        Selecciona tu tipo de cliente para ver
+                        los productos y precios correspondientes.
+                    </p>
+
+                </div>
+
+
+                <div class="customer-cards">
+
+                    <!-- MAYORISTA -->
+
+                    <button
+                        class="customer-card"
+                        data-customer-type="mayorista"
+                    >
+
+                        <div class="customer-icon">
+                            🛒
+                        </div>
+
+                        <div class="customer-card-content">
+
+                            <h3>
+                                Mayorista
+                            </h3>
+
+                            <p>
+                                Consulta precios y condiciones
+                                para compras al por mayor.
+                            </p>
+
+                        </div>
+
+                        <span class="customer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <!-- DISTRIBUIDOR -->
+
+                    <button
+                        class="customer-card"
+                        data-customer-type="distribuidor"
+                    >
+
+                        <div class="customer-icon">
+                            📦
+                        </div>
+
+                        <div class="customer-card-content">
+
+                            <h3>
+                                Distribuidor
+                            </h3>
+
+                            <p>
+                                Consulta precios especiales
+                                para distribuidores.
+                            </p>
+
+                        </div>
+
+                        <span class="customer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <!-- CLIENTE FINAL -->
+
+                    <button
+                        class="customer-card"
+                        data-customer-type="cliente_final"
+                    >
+
+                        <div class="customer-icon">
+                            🐾
+                        </div>
+
+                        <div class="customer-card-content">
+
+                            <h3>
+                                Cliente final
+                            </h3>
+
+                            <p>
+                                Consulta los precios para
+                                consumidor final.
+                            </p>
+
+                        </div>
+
+                        <span class="customer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+                </div>
+
             </div>
-          </div>
-          <div class="stair-label" style="background:#23575d;">Distribuidor</div>
-        </div>
 
-        <!-- Arrow 2 -->
-        <div class="stair-arrow">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M5 12h14M15 8l4 4-4 4" stroke="#C2C29D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
+        </section>
 
-        <!-- Publico General -->
-        <div class="stair-col" id="bar3">
-          <div class="stair-price">
-            <p style="color:#4f6e29;">$3.270</p>
-            <p>+ 20% margen</p>
-          </div>
-          <div class="stair-track">
-            <div class="stair-bar" style="background:linear-gradient(180deg,#4f6e29cc,#4f6e29); height:0;" data-target="88%">
-              <span>+20%</span>
+
+        <!-- =========================
+             PRODUCTOS DESTACADOS
+             Por ahora vacío.
+             Se alimentará desde Sheets.
+        ========================== -->
+
+        <section
+            class="featured-products"
+            id="featured-products"
+        >
+
+            <div class="section-container">
+
+                <div class="section-heading">
+
+                    <p class="section-kicker">
+                        NUESTROS PRODUCTOS
+                    </p>
+
+                    <h2>
+                        Productos destacados
+                    </h2>
+
+                </div>
+
+                <div
+                    id="products-container"
+                    class="products-grid"
+                >
+
+                    <!--
+                        Los productos se cargarán
+                        posteriormente desde Google Sheets.
+                    -->
+
+                </div>
+
             </div>
-          </div>
-          <div class="stair-label" style="background:#4f6e29;">Publico General</div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <strong>
+                    SABORIEMOS PETS
+                </strong>
+
+                <p>
+                    Catálogo de productos para mascotas.
+                </p>
+
+            </div>
+
+            <div class="footer-copy">
+
+                © <span id="current-year"></span>
+                Saboriemos. Todos los derechos reservados.
+
+            </div>
+
         </div>
 
-      </div><!-- end stair-bars -->
+    </footer>
 
-      <div class="stair-legend">
-        <div class="legend-item">
-          <div class="legend-dot" style="background:#897831;"></div>
-          <span>Mayorista — compra directa del productor</span>
-        </div>
-        <div class="legend-item">
-          <div class="legend-dot" style="background:#23575d;"></div>
-          <span>Distribuidor — 20% sobre precio mayorista</span>
-        </div>
-        <div class="legend-item">
-          <div class="legend-dot" style="background:#4f6e29;"></div>
-          <span>Publico general — 20% sobre precio distribuidor</span>
-        </div>
-      </div>
-    </div>
 
-  </div>
-</section>
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
 
-<!-- ============ CATALOG ============ -->
-<section id="catalog">
-  <div class="section-inner" style="max-width:1080px;">
+    <script src="js/app.js"></script>
 
-    <div class="section-header observe" style="margin-bottom:48px;">
-      <span class="section-label">Catalogo Mayorista 2025</span>
-      <h2 class="section-title">Nuestros productos</h2>
-      <p style="color:#999; font-size:14px; max-width:480px; margin:14px auto 0; line-height:1.6;">
-        Toca cada tarjeta para ver la escalera de precios completa y seleccionar los productos para tu negocio.
-      </p>
-    </div>
-
-    <div class="card-grid" id="cardGrid">
-      <!-- Cards injected by JS -->
-    </div>
-
-    <div class="summary-note">
-      <div class="summary-icon">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-          <circle cx="11" cy="11" r="9" stroke="#C2C29D" stroke-width="1.5"/>
-          <path d="M11 7v5l3 3" stroke="#C2C29D" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <div style="flex:1; min-width:200px;">
-        <p>Precios vigentes sujetos a actualizacion</p>
-        <p>Todos los valores son en pesos colombianos. Los pedidos mayoristas tienen un minimo de compra. Contacta al equipo de ventas para condiciones especiales por volumen.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ============ FOOTER ============ -->
-<footer>
-  <div class="footer-brand">
-    <div class="footer-logo-dot">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <circle cx="5" cy="5" r="2.5" fill="white"/>
-        <circle cx="10" cy="3" r="1.8" fill="white"/>
-        <circle cx="12.5" cy="8" r="1.8" fill="white"/>
-        <ellipse cx="8" cy="12" rx="5" ry="3.5" fill="white"/>
-      </svg>
-    </div>
-    <h2>Saboriemos Pets</h2>
-  </div>
-  <p>Nutricion Real, Precio Inteligente</p>
-  <small>CATALOGO MAYORISTA — USO EXCLUSIVO PARA DISTRIBUIDORES</small>
-</footer>
-
-<!-- ============================
-     JAVASCRIPT
-============================ -->
-<script>
-  /* ---- Product data ---- */
-  const products = [
-    {
-      id: 1, name: "Burritos Muslito Pollo", weight: "x50g",
-      mayorista: 2271, distribuidor: 2725, publico: 3270,
-      accent: "#897831", bg: "#f5efe0", label: "Pollo", tag: "NUEVO",
-      desc: "Muslo de pollo deshidratado, crocante y sin conservantes artificiales."
-    },
-    {
-      id: 2, name: "Cookies Cabano", weight: "x50g",
-      mayorista: 2461, distribuidor: 2953, publico: 3544,
-      accent: "#23575d", bg: "#e8f2f3", label: "Cabano", tag: "TOP",
-      desc: "Galleta proteica con cabano ahumado real. Alta aceptacion en mascotas exigentes."
-    },
-    {
-      id: 3, name: "Karnitas Cabano", weight: "x50g",
-      mayorista: 1942, distribuidor: 2330, publico: 2796,
-      accent: "#4f6e29", bg: "#edf2e6", label: "Cabano", tag: "POPULAR",
-      desc: "Trozos de cabano tierno con alto contenido proteico. Snack premium."
-    },
-    {
-      id: 4, name: "Paticas de Pollo", weight: "x50g",
-      mayorista: 2037, distribuidor: 2444, publico: 2933,
-      accent: "#897831", bg: "#f5efe0", label: "Pollo", tag: "",
-      desc: "Paticas deshidratadas naturalmente. Fuente de glucosamina y colageno."
-    },
-    {
-      id: 5, name: "Karnitas Cabano", weight: "x1kg",
-      mayorista: 24269, distribuidor: 29122, publico: 34947,
-      accent: "#4f6e29", bg: "#edf2e6", label: "Cabano", tag: "MAYOREO",
-      desc: "Presentacion mayorista. Ideal para distribuidores y tiendas especializadas."
-    },
-    {
-      id: 6, name: "Paticas de Pollo", weight: "x Libra",
-      mayorista: 14597, distribuidor: 17516, publico: 21020,
-      accent: "#23575d", bg: "#e8f2f3", label: "Pollo", tag: "MAYOREO",
-      desc: "Libra de paticas deshidratadas. Mayor margen para tu negocio."
-    }
-  ];
-
-  function fmt(n) {
-    return "$" + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  }
-
-  /* ---- Pollo SVG ---- */
-  function polloSVG() {
-    return `<ellipse cx="18" cy="20" rx="9" ry="7" fill="rgba(255,255,255,0.9)"/>
-            <circle cx="18" cy="12" r="5" fill="rgba(255,255,255,0.7)"/>
-            <ellipse cx="10" cy="17" rx="3" ry="5" fill="rgba(255,255,255,0.5)"/>
-            <ellipse cx="26" cy="17" rx="3" ry="5" fill="rgba(255,255,255,0.5)"/>`;
-  }
-  function cabanoSVG() {
-    return `<rect x="6" y="14" width="24" height="8" rx="4" fill="rgba(255,255,255,0.9)"/>
-            <rect x="10" y="10" width="6" height="4" rx="2" fill="rgba(255,255,255,0.7)"/>
-            <rect x="20" y="10" width="6" height="4" rx="2" fill="rgba(255,255,255,0.7)"/>
-            <rect x="9" y="22" width="4" height="6" rx="2" fill="rgba(255,255,255,0.6)"/>
-            <rect x="23" y="22" width="4" height="6" rx="2" fill="rgba(255,255,255,0.6)"/>`;
-  }
-
-  /* ---- Render cards ---- */
-  const grid = document.getElementById("cardGrid");
-  let activeCard = null;
-
-  products.forEach((p, idx) => {
-    const iconInner = p.label === "Pollo" ? polloSVG() : cabanoSVG();
-
-    const card = document.createElement("div");
-    card.className = "product-card";
-    card.dataset.id = p.id;
-    card.style.transitionDelay = (idx * 0.07) + "s";
-
-    const tiers = [
-      { tier: "Mayorista",       price: p.mayorista,    pct: "Base",  color: p.accent },
-      { tier: "Distribuidor",    price: p.distribuidor, pct: "+20%",  color: "#23575d" },
-      { tier: "Publico General", price: p.publico,      pct: "+20%",  color: "#4f6e29" }
-    ];
-
-    const ladderRows = tiers.map((row, i) => `
-      <div class="ladder-row" style="background:${row.color}0d; border-left-color:${row.color}; ${i<2 ? '' : 'margin-bottom:0'}">
-        <div>
-          <p class="ladder-tier" style="color:${row.color};">${row.tier}</p>
-          <p class="ladder-price">${fmt(row.price)}</p>
-        </div>
-        <span class="ladder-pct" style="color:${row.color}; background:${row.color}18;">${row.pct}</span>
-      </div>`).join('');
-
-    card.innerHTML = `
-      <!-- Image area -->
-      <div class="card-image" style="background:${p.bg};">
-        <div class="card-bubble-1" style="background:${p.accent}18;"></div>
-        <div class="card-bubble-2" style="background:${p.accent}10;"></div>
-        <div class="card-icon-box" style="background:linear-gradient(135deg,${p.accent},${p.accent}cc); box-shadow:0 8px 24px ${p.accent}40;">
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">${iconInner}</svg>
-        </div>
-        ${p.tag ? `<div class="card-tag" style="background:${p.accent};">${p.tag}</div>` : ''}
-        <div class="card-weight" style="color:${p.accent}; border-color:${p.accent}40;">${p.weight}</div>
-      </div>
-
-      <!-- Body -->
-      <div class="card-body">
-        <p class="card-label">${p.label}</p>
-        <h3 class="card-name">${p.name}</h3>
-        <p class="card-desc">${p.desc}</p>
-      </div>
-
-      <!-- Collapsed price -->
-      <div class="card-collapsed" id="collapsed-${p.id}">
-        <div>
-          <p>MAYORISTA</p>
-          <p class="price" style="color:${p.accent};">${fmt(p.mayorista)}</p>
-        </div>
-        <div class="card-chevron" style="background:${p.accent}15;">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M7 3v8M3 9l4 4 4-4" stroke="${p.accent}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-      </div>
-
-      <!-- Expanded ladder -->
-      <div class="card-expanded" id="expanded-${p.id}">
-        <div class="price-rule" style="border-top:2px solid ${p.accent}20;"></div>
-        <div class="price-ladder">
-          <p class="ladder-title">Escalera de Precios</p>
-          ${ladderRows}
-        </div>
-      </div>
-    `;
-
-    card.addEventListener("click", () => toggleCard(p.id));
-    grid.appendChild(card);
-  });
-
-  function toggleCard(id) {
-    if (activeCard === id) {
-      closeCard(id);
-      activeCard = null;
-    } else {
-      if (activeCard !== null) closeCard(activeCard);
-      openCard(id);
-      activeCard = id;
-    }
-  }
-
-  function openCard(id) {
-    const card = document.querySelector(`[data-id="${id}"]`);
-    const collapsed = document.getElementById(`collapsed-${id}`);
-    const expanded = document.getElementById(`expanded-${id}`);
-    const p = products.find(p => p.id === id);
-    card.classList.add("active");
-    card.style.borderColor = p.accent;
-    card.style.boxShadow = `0 12px 40px ${p.accent}28, 0 2px 8px ${p.accent}18`;
-    collapsed.style.display = "none";
-    expanded.classList.add("open");
-  }
-
-  function closeCard(id) {
-    const card = document.querySelector(`[data-id="${id}"]`);
-    const collapsed = document.getElementById(`collapsed-${id}`);
-    const expanded = document.getElementById(`expanded-${id}`);
-    card.classList.remove("active");
-    card.style.borderColor = "#e5ddd0";
-    card.style.boxShadow = "0 2px 16px rgba(0,0,0,0.06)";
-    collapsed.style.display = "flex";
-    expanded.classList.remove("open");
-  }
-
-  /* ---- Intersection Observer ---- */
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add("visible");
-      }
-    });
-  }, { threshold: 0.12 });
-
-  document.querySelectorAll(".observe, .philo-card, .product-card").forEach(el => io.observe(el));
-
-  /* ---- Staircase bars observer ---- */
-  const stairObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        animateBars();
-        stairObserver.disconnect();
-      }
-    });
-  }, { threshold: 0.2 });
-
-  stairObserver.observe(document.getElementById("stairBars"));
-
-  function animateBars() {
-    const delays = [0, 250, 500];
-    document.querySelectorAll(".stair-bar").forEach((bar, i) => {
-      const target = bar.dataset.target;
-      setTimeout(() => {
-        bar.style.height = target;
-        const priceEl = bar.closest(".stair-col").querySelector(".stair-price");
-        const labelEl = bar.closest(".stair-col").querySelector(".stair-label");
-        if (priceEl) priceEl.classList.add("visible");
-        if (labelEl) setTimeout(() => labelEl.classList.add("visible"), 300);
-      }, delays[i]);
-    });
-  }
-</script>
 </body>
 </html>
