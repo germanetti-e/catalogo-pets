@@ -1671,3 +1671,942 @@ a {
     }
 
 }
+
+/* =========================================================
+   CARRITO DE COMPRAS
+   ========================================================= */
+
+
+/* =========================================================
+   PÁGINA
+   ========================================================= */
+
+.cart-page {
+
+    padding-bottom:
+        100px;
+}
+
+
+/* =========================================================
+   PARTE SUPERIOR — CONTINUAR COMPRANDO
+   ========================================================= */
+
+.cart-top {
+
+    padding-top:
+        22px;
+
+    padding-bottom:
+        8px;
+}
+
+
+.cart-top .back-link {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+    color:
+        var(--petrol);
+
+    font-size:
+        17px;
+
+    font-weight:
+        700;
+
+    text-decoration:
+        none;
+}
+
+
+.cart-top .back-link:hover {
+
+    text-decoration:
+        underline;
+}
+
+
+/* =========================================================
+   SECCIÓN ESTADO DE COMPRA
+   ========================================================= */
+
+.cart-status-section {
+
+    padding-top:
+        4px;
+
+    padding-bottom:
+        30px;
+}
+
+
+.cart-status-card {
+
+    width:
+        100%;
+
+    max-width:
+        624px;
+
+    margin:
+        0 auto;
+
+    padding:
+        48px;
+
+    background:
+        var(--white);
+
+    border:
+        1px solid #e7e7e7;
+
+    border-radius:
+        32px;
+
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.04);
+}
+
+
+/* =========================================================
+   ENCABEZADO
+   ========================================================= */
+
+.cart-status-heading {
+
+    display:
+        flex;
+
+    align-items:
+        flex-start;
+
+    gap:
+        22px;
+
+    margin-bottom:
+        34px;
+}
+
+
+.cart-status-icon {
+
+    flex:
+        0 0 auto;
+
+    font-size:
+        38px;
+
+    line-height:
+        1;
+
+    margin-top:
+        8px;
+}
+
+
+.cart-status-heading h1 {
+
+    margin:
+        0;
+
+    color:
+        var(--petrol);
+
+    font-size:
+        34px;
+
+    font-weight:
+        800;
+
+    line-height:
+        1.12;
+
+    letter-spacing:
+        -0.5px;
+}
+
+
+/* =========================================================
+   SUBTOTAL
+   ========================================================= */
+
+.cart-subtotal {
+
+    text-align:
+        center;
+
+    margin-bottom:
+        42px;
+}
+
+
+.cart-subtotal-label {
+
+    margin:
+        0 0 8px;
+
+    color:
+        #666666;
+
+    font-size:
+        22px;
+
+    font-weight:
+        400;
+
+    line-height:
+        1.2;
+}
+
+
+.cart-subtotal-value {
+
+    margin:
+        0;
+
+    color:
+        var(--petrol);
+
+    font-size:
+        58px;
+
+    font-weight:
+        800;
+
+    line-height:
+        1;
+}
+
+
+/* =========================================================
+   BARRA DE PROGRESO
+   ========================================================= */
+
+.cart-progress-container {
+
+    position:
+        relative;
+
+    padding:
+        0 0;
+
+    margin-bottom:
+        28px;
+}
+
+
+.cart-progress-track {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    height:
+        13px;
+
+    background:
+        #e6edf2;
+
+    border-radius:
+        999px;
+}
+
+
+.cart-progress-fill {
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        0%;
+
+    height:
+        100%;
+
+    background:
+        var(--petrol);
+
+    border-radius:
+        999px;
+
+    transition:
+        width 0.4s ease;
+}
+
+
+.cart-progress-marker {
+
+    position:
+        absolute;
+
+    top:
+        50%;
+
+    left:
+        0%;
+
+    width:
+        34px;
+
+    height:
+        34px;
+
+    background:
+        var(--petrol);
+
+    border:
+        5px solid var(--white);
+
+    border-radius:
+        50%;
+
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.16);
+
+    transform:
+        translate(-50%, -50%);
+
+    transition:
+        left 0.4s ease;
+}
+
+
+/* =========================================================
+   HITOS
+   ========================================================= */
+
+.cart-milestones {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    gap:
+        20px;
+
+    margin-bottom:
+        42px;
+}
+
+
+.cart-milestone {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        5px;
+}
+
+
+.cart-milestone:last-child {
+
+    text-align:
+        right;
+}
+
+
+.cart-milestone strong {
+
+    color:
+        var(--petrol);
+
+    font-size:
+        25px;
+
+    font-weight:
+        800;
+
+    line-height:
+        1.1;
+}
+
+
+.cart-milestone span {
+
+    color:
+        #666666;
+
+    font-size:
+        18px;
+
+    font-weight:
+        400;
+
+    line-height:
+        1.2;
+}
+
+
+/* =========================================================
+   MENSAJE DE ESTADO
+   ========================================================= */
+
+.cart-status-message {
+
+    margin-bottom:
+        40px;
+}
+
+
+.cart-status-message-title {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        15px;
+
+    margin-bottom:
+        25px;
+
+    color:
+        #d93232;
+
+    font-size:
+        20px;
+
+    line-height:
+        1.25;
+}
+
+
+.cart-status-symbol {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    flex:
+        0 0 auto;
+
+    width:
+        29px;
+
+    height:
+        29px;
+
+    background:
+        #d93232;
+
+    color:
+        var(--white);
+
+    border-radius:
+        50%;
+
+    font-size:
+        21px;
+
+    font-weight:
+        800;
+
+    line-height:
+        1;
+}
+
+
+.cart-status-message p {
+
+    margin:
+        0;
+
+    color:
+        #666666;
+
+    font-size:
+        21px;
+
+    font-weight:
+        400;
+
+    line-height:
+        1.4;
+}
+
+
+.cart-status-message p strong {
+
+    color:
+        var(--petrol);
+
+    font-weight:
+        800;
+}
+
+
+/* =========================================================
+   TARIFAS DE ENVÍO
+   ========================================================= */
+
+.shipping-rates {
+
+    padding-top:
+        26px;
+
+    border-top:
+        1px solid #e5e5e5;
+}
+
+
+.shipping-rates-toggle {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    width:
+        100%;
+
+    padding:
+        0;
+
+    background:
+        transparent;
+
+    color:
+        var(--petrol);
+
+    border:
+        0;
+
+    font-family:
+        inherit;
+
+    font-size:
+        24px;
+
+    font-weight:
+        800;
+
+    line-height:
+        1.2;
+
+    text-align:
+        left;
+
+    cursor:
+        pointer;
+}
+
+
+.shipping-rates-toggle:focus-visible {
+
+    outline:
+        2px solid var(--petrol);
+
+    outline-offset:
+        4px;
+
+    border-radius:
+        4px;
+}
+
+
+.shipping-rates-arrow {
+
+    font-size:
+        18px;
+
+    line-height:
+        1;
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+/* =========================================================
+   LISTA DE TARIFAS
+   ========================================================= */
+
+.shipping-rates-content {
+
+    margin-top:
+        28px;
+}
+
+
+.shipping-rate {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        20px;
+
+    padding:
+        14px 0;
+
+    border-bottom:
+        1px solid #e5e5e5;
+
+    color:
+        #666666;
+
+    font-size:
+        20px;
+
+    line-height:
+        1.25;
+}
+
+
+.shipping-rate:last-child {
+
+    border-bottom:
+        none;
+}
+
+
+.shipping-rate strong {
+
+    color:
+        var(--petrol);
+
+    font-size:
+        22px;
+
+    font-weight:
+        800;
+
+    white-space:
+        nowrap;
+}
+
+
+/* =========================================================
+   NOTA DE ENVÍO
+   ========================================================= */
+
+.shipping-note {
+
+    margin:
+        20px 0 0;
+
+    color:
+        #888888;
+
+    font-size:
+        13px;
+
+    line-height:
+        1.4;
+
+    text-align:
+        center;
+}
+
+
+/* =========================================================
+   PRODUCTOS DEL CARRITO
+   ========================================================= */
+
+.cart-products-section {
+
+    padding-bottom:
+        40px;
+}
+
+
+.cart-products {
+
+    width:
+        100%;
+
+    max-width:
+        624px;
+
+    margin:
+        0 auto;
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .cart-status-card {
+
+        max-width:
+            620px;
+
+        padding:
+            40px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — CELULAR
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .cart-page {
+
+        padding-bottom:
+            90px;
+    }
+
+
+    .cart-top {
+
+        padding-top:
+            18px;
+
+        padding-bottom:
+            8px;
+    }
+
+
+    .cart-top .back-link {
+
+        font-size:
+            16px;
+    }
+
+
+    .cart-status-section {
+
+        padding-top:
+            4px;
+
+        padding-bottom:
+            20px;
+    }
+
+
+    .cart-status-card {
+
+        padding:
+            30px 24px;
+
+        border-radius:
+            26px;
+    }
+
+
+    .cart-status-heading {
+
+        gap:
+            15px;
+
+        margin-bottom:
+            30px;
+    }
+
+
+    .cart-status-icon {
+
+        font-size:
+            32px;
+
+        margin-top:
+            4px;
+    }
+
+
+    .cart-status-heading h1 {
+
+        font-size:
+            29px;
+
+        line-height:
+            1.1;
+    }
+
+
+    .cart-subtotal {
+
+        margin-bottom:
+            38px;
+    }
+
+
+    .cart-subtotal-label {
+
+        font-size:
+            19px;
+    }
+
+
+    .cart-subtotal-value {
+
+        font-size:
+            48px;
+    }
+
+
+    .cart-progress-track {
+
+        height:
+            11px;
+    }
+
+
+    .cart-progress-marker {
+
+        width:
+            31px;
+
+        height:
+            31px;
+
+        border-width:
+            4px;
+    }
+
+
+    .cart-milestones {
+
+        margin-bottom:
+            36px;
+    }
+
+
+    .cart-milestone strong {
+
+        font-size:
+            21px;
+    }
+
+
+    .cart-milestone span {
+
+        font-size:
+            16px;
+    }
+
+
+    .cart-status-message {
+
+        margin-bottom:
+            34px;
+    }
+
+
+    .cart-status-message-title {
+
+        align-items:
+            flex-start;
+
+        gap:
+            12px;
+
+        font-size:
+            17px;
+    }
+
+
+    .cart-status-symbol {
+
+        width:
+            27px;
+
+        height:
+            27px;
+
+        font-size:
+            19px;
+    }
+
+
+    .cart-status-message p {
+
+        font-size:
+            18px;
+    }
+
+
+    .shipping-rates {
+
+        padding-top:
+            22px;
+    }
+
+
+    .shipping-rates-toggle {
+
+        font-size:
+            20px;
+    }
+
+
+    .shipping-rates-content {
+
+        margin-top:
+            20px;
+    }
+
+
+    .shipping-rate {
+
+        gap:
+            12px;
+
+        padding:
+            13px 0;
+
+        font-size:
+            17px;
+    }
+
+
+    .shipping-rate strong {
+
+        font-size:
+            19px;
+    }
+
+
+    .shipping-note {
+
+        font-size:
+            12px;
+    }
+
+}
