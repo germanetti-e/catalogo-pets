@@ -129,8 +129,11 @@ function getGroupedCart() {
         if (!grouped[code]) {
 
             grouped[code] = {
+
                 product: product,
+
                 quantity: 0
+
             };
 
         }
@@ -162,6 +165,7 @@ function calculateSubtotal() {
                     ]
                 ) || 0;
 
+
             return total + price;
 
         },
@@ -172,14 +176,17 @@ function calculateSubtotal() {
 
 
 /* =========================================================
-   MOSTRAR CONTADOR
+   MOSTRAR CONTADOR DEL CARRITO
    ========================================================= */
 
 function updateCartCount() {
 
     if (!cartCount) {
+
         return;
+
     }
+
 
     cartCount.textContent =
         cart.length;
@@ -194,11 +201,15 @@ function updateCartCount() {
 function updateSubtotal() {
 
     if (!cartSubtotal) {
+
         return;
+
     }
+
 
     const subtotal =
         calculateSubtotal();
+
 
     cartSubtotal.textContent =
         formatPrice(subtotal);
@@ -243,8 +254,11 @@ function updatePurchaseStatus() {
 
 
     /* =====================================================
-       PORCENTAJE DE LA BARRA
-       La barra llega al 100% con $250.000
+       CALCULAR PROGRESO
+
+       0%     = $0
+       40%    = $100.000
+       100%   = $250.000
        ===================================================== */
 
     const progress =
@@ -298,16 +312,21 @@ function updatePurchaseStatus() {
 
 
                 <p>
+
                     Te faltan
+
                     <strong>
                         ${formatPrice(missing)}
                     </strong>
+
                     para realizar tu solicitud.
+
                 </p>
 
             `;
 
         }
+
 
         return;
 
@@ -334,7 +353,9 @@ function updatePurchaseStatus() {
 
                 <div class="cart-status-message-title">
 
-                    <span class="cart-status-symbol">
+                    <span
+                        class="cart-status-symbol"
+                    >
                         ✓
                     </span>
 
@@ -346,16 +367,21 @@ function updatePurchaseStatus() {
 
 
                 <p>
+
                     Te faltan
+
                     <strong>
                         ${formatPrice(missing)}
                     </strong>
+
                     para obtener envío GRATIS.
+
                 </p>
 
             `;
 
         }
+
 
         return;
 
@@ -374,7 +400,9 @@ function updatePurchaseStatus() {
 
                 <div class="cart-status-message-title">
 
-                    <span class="cart-status-symbol">
+                    <span
+                        class="cart-status-symbol"
+                    >
                         ✓
                     </span>
 
@@ -386,8 +414,10 @@ function updatePurchaseStatus() {
 
 
                 <p>
+
                     Tu compra cumple con el valor
                     necesario para obtener envío GRATIS.
+
                 </p>
 
             `;
@@ -397,6 +427,234 @@ function updatePurchaseStatus() {
     }
 
 }
+
+
+/* =========================================================
+   MOSTRAR PRODUCTOS DEL CARRITO
+   ========================================================= */
+
+function renderCart() {
+
+    if (!cartProducts) {
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       CARRITO VACÍO
+       ===================================================== */
+
+    if (cart.length === 0) {
+
+        cartProducts.innerHTML = `
+
+            <div class="cart-empty">
+
+                <p>
+                    Tu carrito está vacío.
+                </p>
+
+                <a
+                    href="index.html"
+                    class="whatsapp-button"
+                >
+                    Ver productos
+                </a>
+
+            </div>
+
+        `;
+
+
+        updateCartCount();
+
+        updateSubtotal();
+
+        updatePurchaseStatus();
+
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       AGRUPAR PRODUCTOS
+       ===================================================== */
+
+    const groupedCart =
+        getGroupedCart();
+
+
+    /* =====================================================
+       GENERAR HTML
+       ===================================================== */
+
+    cartProducts.innerHTML =
+        groupedCart.map(item => {
+
+            const product =
+                item.product;
+
+
+            const quantity =
+                item.quantity;
+
+
+            const price =
+                Number(
+                    product[
+                        selectedCustomer.priceField
+                    ]
+                ) || 0;
+
+
+            const productSubtotal =
+                price * quantity;
+
+
+            const iva =
+                Number(product.iva) || 0;
+
+
+            return `
+
+                <article
+                    class="cart-product-card"
+                    data-product-code="${product.codigo}"
+                >
+
+                    <div class="cart-product-info">
+
+
+                        <p class="cart-product-brand">
+                            ${product.marca || ""}
+                        </p>
+
+
+                        <h2 class="cart-product-name">
+                            ${product.producto || ""}
+                        </h2>
+
+
+                        <p class="cart-product-price">
+
+                            ${formatPrice(price)}
+
+                            <span>
+                                + IVA (${iva}%)
+                            </span>
+
+                        </p>
+
+
+                    </div>
+
+
+                    <div class="cart-product-actions">
+
+
+                        <div class="cart-quantity">
+
+
+                            <button
+                                type="button"
+                                class="cart-quantity-button"
+                                data-action="decrease"
+                                data-product-code="${product.codigo}"
+                                aria-label="Disminuir cantidad"
+                            >
+                                −
+                            </button>
+
+
+                            <span
+                                class="cart-quantity-value"
+                            >
+                                ${quantity}
+                            </span>
+
+
+                            <button
+                                type="button"
+                                class="cart-quantity-button"
+                                data-action="increase"
+                                data-product-code="${product.codigo}"
+                                aria-label="Aumentar cantidad"
+                            >
+                                +
+                            </button>
+
+
+                        </div>
+
+
+                        <strong
+                            class="cart-product-subtotal"
+                        >
+                            ${formatPrice(productSubtotal)}
+                        </strong>
+
+
+                    </div>
+
+
+                </article>
+
+            `;
+
+        }).join("");
+
+
+    /* =====================================================
+       ACTUALIZAR INFORMACIÓN
+       ===================================================== */
+
+    updateCartCount();
+
+    updateSubtotal();
+
+    updatePurchaseStatus();
+
+
+    /* =====================================================
+       BOTONES DE CANTIDAD
+       ===================================================== */
+
+    const quantityButtons =
+        document.querySelectorAll(
+            ".cart-quantity-button"
+        );
+
+
+    quantityButtons.forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                const productCode =
+                    button.dataset.productCode;
+
+
+                const action =
+                    button.dataset.action;
+
+
+                changeQuantity(
+                    productCode,
+                    action
+                );
+
+            }
+        );
+
+    });
+
+}
+
 
 /* =========================================================
    CAMBIAR CANTIDAD
@@ -416,7 +674,9 @@ function changeQuantity(
 
 
     if (index === -1) {
+
         return;
+
     }
 
 
@@ -444,7 +704,7 @@ function changeQuantity(
 
 
     /* =====================================================
-       AUMENTAR
+       AUMENTAR CANTIDAD
        ===================================================== */
 
     if (action === "increase") {
@@ -455,8 +715,9 @@ function changeQuantity(
 
 
     /* =====================================================
-       DISMINUIR
-       Nunca permite bajar del pedido mínimo
+       DISMINUIR CANTIDAD
+
+       Nunca permite bajar del pedido mínimo.
        ===================================================== */
 
     if (action === "decrease") {
@@ -488,7 +749,7 @@ function changeQuantity(
 
 
     /* =====================================================
-       GUARDAR CAMBIOS
+       GUARDAR CARRITO ACTUALIZADO
        ===================================================== */
 
     localStorage.setItem(
@@ -496,6 +757,10 @@ function changeQuantity(
         JSON.stringify(cart)
     );
 
+
+    /* =====================================================
+       VOLVER A RENDERIZAR
+       ===================================================== */
 
     renderCart();
 
@@ -520,8 +785,34 @@ if (backLink) {
 
             event.preventDefault();
 
+
             window.location.href =
                 `catalogo.html?tipo=${customerType}`;
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   BOTÓN DEL CARRITO EN EL HEADER
+   ========================================================= */
+
+const cartButton =
+    document.querySelector(
+        ".cart-button"
+    );
+
+
+if (cartButton) {
+
+    cartButton.addEventListener(
+        "click",
+        () => {
+
+            window.location.href =
+                `carrito.html?tipo=${customerType}`;
 
         }
     );
