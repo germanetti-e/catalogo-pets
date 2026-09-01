@@ -1202,6 +1202,92 @@ a {
         1.4;
 }
 
+/* =========================================================
+   BOTÓN AGREGAR AL CARRITO
+   ========================================================= */
+
+.add-to-cart-button {
+
+    width:
+        100%;
+
+    margin-top:
+        18px;
+
+    padding:
+        13px 18px;
+
+    background:
+        var(--petrol);
+
+    color:
+        var(--white);
+
+    border:
+        1px solid var(--petrol);
+
+    border-radius:
+        10px;
+
+    font-size:
+        14px;
+
+    font-weight:
+        700;
+
+    line-height:
+        1.2;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+.add-to-cart-button:hover {
+
+    background:
+        var(--green);
+
+    border-color:
+        var(--green);
+
+    transform:
+        translateY(-1px);
+}
+
+
+.add-to-cart-button:active {
+
+    transform:
+        translateY(0);
+}
+
+
+.add-to-cart-button:disabled {
+
+    cursor:
+        default;
+
+}
+
+
+/* =========================================================
+   ESTADO — PRODUCTO AGREGADO
+   ========================================================= */
+
+.add-to-cart-button.added {
+
+    background:
+        var(--green);
+
+    border-color:
+        var(--green);
+
+    transform:
+        none;
+}
 
 /* =========================================================
    ESTADOS
