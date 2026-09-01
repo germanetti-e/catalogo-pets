@@ -725,34 +725,50 @@ function changeQuantity(
 
 
     /* =====================================================
-       AUMENTAR CANTIDAD
+       CANTIDAD ACTUAL
+       ===================================================== */
+
+    const currentQuantity =
+        cart.filter(
+            item =>
+                String(item.codigo) ===
+                String(productCode)
+        ).length;
+
+
+    /* =====================================================
+       AUMENTAR
+       Agrega exactamente otro pedido mínimo
        ===================================================== */
 
     if (action === "increase") {
 
-        cart.push(product);
+        for (
+            let i = 0;
+            i < minimumQuantity;
+            i++
+        ) {
+
+            cart.push(product);
+
+        }
 
     }
 
 
     /* =====================================================
-       DISMINUIR CANTIDAD
-
-       Nunca permite bajar del pedido mínimo.
+       DISMINUIR
+       Quita exactamente un pedido mínimo
        ===================================================== */
 
     if (action === "decrease") {
 
-        const quantity =
-            cart.filter(
-                item =>
-                    String(item.codigo) ===
-                    String(productCode)
-            ).length;
-
+        /*
+         * Nunca permite bajar del pedido mínimo.
+         */
 
         if (
-            quantity <=
+            currentQuantity <=
             minimumQuantity
         ) {
 
@@ -761,10 +777,37 @@ function changeQuantity(
         }
 
 
-        cart.splice(
-            index,
-            1
-        );
+        /*
+         * Quita exactamente la cantidad
+         * correspondiente a un pedido mínimo.
+         */
+
+        for (
+            let i = 0;
+            i < minimumQuantity;
+            i++
+        ) {
+
+            const productIndex =
+                cart.findIndex(
+                    item =>
+                        String(item.codigo) ===
+                        String(productCode)
+                );
+
+
+            if (
+                productIndex !== -1
+            ) {
+
+                cart.splice(
+                    productIndex,
+                    1
+                );
+
+            }
+
+        }
 
     }
 
@@ -778,6 +821,14 @@ function changeQuantity(
         JSON.stringify(cart)
     );
 
+
+    /* =====================================================
+       VOLVER A RENDERIZAR
+       ===================================================== */
+
+    renderCart();
+
+}
 
     /* =====================================================
        VOLVER A RENDERIZAR
