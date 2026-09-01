@@ -436,24 +436,24 @@ function addToCart(
 
 
     /* =======================================================
-       CANTIDAD INICIAL
-       Se agrega automáticamente el pedido mínimo
-       ======================================================= */
+   CANTIDAD INICIAL
+   Se agrega automáticamente el pedido mínimo
+   ======================================================= */
 
-    const minimum =
-        Number(
-            product[selectedCustomer.minimumField]
-        );
-
-
-    const quantity =
-        Number.isFinite(minimum) &&
-        minimum > 0
-            ? minimum
-            : 1;
+const minimum =
+    Number(
+        product[selectedCustomer.minimumField]
+    );
 
 
-    /* =======================================================
+const quantity =
+    Number.isFinite(minimum) &&
+    minimum > 0
+        ? minimum
+        : 1;
+
+
+/* =======================================================
    AGREGAR LAS UNIDADES AL CARRITO
    ======================================================= */
 
@@ -470,6 +470,15 @@ for (
 
 updateCartCount();
 
+
+/* =======================================================
+   GUARDAR CARRITO
+   ======================================================= */
+
+localStorage.setItem(
+    "saboriemos_cart",
+    JSON.stringify(cart)
+);
 
 /* =======================================================
    CAMBIO TEMPORAL DEL BOTÓN
