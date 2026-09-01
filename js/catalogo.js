@@ -13,6 +13,14 @@ const API_URL =
 
 
 /* =========================================================
+   RUTA DE IMÁGENES
+   ========================================================= */
+
+const PRODUCTS_IMAGE_PATH =
+    "assets/assets/productos/";
+
+
+/* =========================================================
    OBTENER TIPO DE CLIENTE
    ========================================================= */
 
@@ -128,6 +136,31 @@ function formatPrice(value) {
 
 
 /* =========================================================
+   CONSTRUIR URL DE IMAGEN
+   ========================================================= */
+
+function getProductImage(imageName) {
+
+    if (!imageName) {
+        return "";
+    }
+
+    const cleanName =
+        String(imageName)
+            .trim();
+
+    if (!cleanName) {
+        return "";
+    }
+
+    return PRODUCTS_IMAGE_PATH +
+        cleanName +
+        ".png";
+
+}
+
+
+/* =========================================================
    CARGAR PRODUCTOS
    ========================================================= */
 
@@ -139,9 +172,11 @@ async function loadProducts() {
             await fetch(API_URL);
 
         if (!response.ok) {
+
             throw new Error(
                 "No se pudo consultar el catálogo."
             );
+
         }
 
         const products =
@@ -162,7 +197,7 @@ async function loadProducts() {
 
 
                 /* =============================================
-                   ORDENAR
+                   ORDENAR PRODUCTOS
                    ============================================= */
 
                 .sort((a, b) =>
@@ -189,6 +224,7 @@ async function loadProducts() {
 
             productsGrid.innerHTML = `
                 <div class="catalog-error">
+
                     <p>
                         No pudimos cargar los productos.
                     </p>
@@ -196,6 +232,7 @@ async function loadProducts() {
                     <p>
                         Por favor, intenta nuevamente.
                     </p>
+
                 </div>
             `;
 
@@ -225,9 +262,11 @@ function renderProducts(products) {
 
         productsGrid.innerHTML = `
             <div class="catalog-empty">
+
                 <p>
                     No hay productos disponibles.
                 </p>
+
             </div>
         `;
 
@@ -249,18 +288,31 @@ function renderProducts(products) {
             const minimum =
                 product[selectedCustomer.minimumField];
 
+            const image =
+                getProductImage(product.imagen);
+
 
             return `
                 <article class="product-card">
 
                     <div class="product-image-container">
 
-                        <img
-                            src="${product.imagen || ""}"
-                            alt="${product.producto || ""}"
-                            class="product-image"
-                            loading="lazy"
-                        >
+                        ${
+                            image
+                                ? `
+                                    <img
+                                        src="${image}"
+                                        alt="${product.producto || ""}"
+                                        class="product-image"
+                                        loading="lazy"
+                                    >
+                                  `
+                                : `
+                                    <div class="product-image-placeholder">
+                                        🐾
+                                    </div>
+                                  `
+                        }
 
                     </div>
 
