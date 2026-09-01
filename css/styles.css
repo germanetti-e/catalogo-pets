@@ -10,7 +10,6 @@
 
 :root {
 
-    /* Colores oficiales de marca */
     --petrol: #23575d;
     --green: #4f6e29;
     --sage: #c2c29d;
@@ -18,22 +17,17 @@
     --gold: #897831;
     --white: #ffffff;
 
-    /* Textos */
     --text: #222222;
     --text-soft: #666666;
 
-    /* Elementos */
     --border: #e5e5e5;
     --background: #ffffff;
 
-    /* Layout */
     --max-width: 1180px;
 
-    /* Bordes */
     --radius: 18px;
     --radius-small: 12px;
 
-    /* Sombras */
     --shadow:
         0 8px 30px rgba(0, 0, 0, 0.07);
 
@@ -327,19 +321,26 @@ a {
    ========================================================= */
 
 .hero {
+
     width: 100%;
+
     padding: 0;
+
     margin: 0;
 
-    background: #ffffff;
+    background:
+        #ffffff;
 
     overflow: hidden;
 }
 
+
 .hero-banner {
+
     display: block;
 
     width: 100%;
+
     height: auto;
 
     max-width: 100%;
@@ -854,15 +855,403 @@ a {
 
 
 /* =========================================================
+   CATÁLOGO
+   ========================================================= */
+
+.catalog-page {
+
+    width: 100%;
+
+    background:
+        var(--white);
+}
+
+
+/* =========================================================
+   ENCABEZADO DEL CATÁLOGO
+   ========================================================= */
+
+.catalog-header {
+
+    background:
+        var(--white);
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+
+.catalog-header .section-container {
+
+    padding:
+        42px 0 34px;
+}
+
+
+.back-link {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    margin-bottom:
+        22px;
+
+    color:
+        var(--petrol);
+
+    font-size:
+        14px;
+
+    font-weight:
+        600;
+
+    transition:
+        color 0.2s ease;
+}
+
+
+.back-link:hover {
+
+    color:
+        var(--green);
+}
+
+
+.catalog-header h1 {
+
+    margin-bottom:
+        8px;
+
+    color:
+        var(--petrol);
+
+    font-size:
+        clamp(
+            30px,
+            4vw,
+            42px
+        );
+
+    line-height:
+        1.1;
+
+    letter-spacing:
+        -1px;
+}
+
+
+.catalog-header #catalog-description {
+
+    color:
+        var(--text-soft);
+
+    font-size:
+        15px;
+}
+
+
+/* =========================================================
+   PRODUCTOS
+   ========================================================= */
+
+.products-section {
+
+    background:
+        var(--white);
+}
+
+
+.products-section .section-container {
+
+    padding:
+        48px 0 76px;
+}
+
+
+.products-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap:
+        24px;
+
+    width:
+        100%;
+}
+
+
+/* =========================================================
+   TARJETA DE PRODUCTO
+   ========================================================= */
+
+.product-card {
+
+    min-width:
+        0;
+
+    overflow:
+        hidden;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    background:
+        var(--white);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        var(--radius);
+
+    box-shadow:
+        var(--shadow);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.product-card:hover {
+
+    transform:
+        translateY(-4px);
+
+    border-color:
+        var(--petrol);
+
+    box-shadow:
+        var(--shadow-hover);
+}
+
+
+/* =========================================================
+   IMAGEN DEL PRODUCTO
+   ========================================================= */
+
+.product-image-container {
+
+    width:
+        100%;
+
+    aspect-ratio:
+        1 / 1;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        20px;
+
+    background:
+        var(--white);
+
+    overflow:
+        hidden;
+}
+
+
+.product-image {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        contain;
+}
+
+
+.product-image-placeholder {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        var(--cream);
+
+    border-radius:
+        var(--radius-small);
+
+    color:
+        var(--petrol);
+
+    font-size:
+        38px;
+}
+
+
+/* =========================================================
+   INFORMACIÓN DEL PRODUCTO
+   ========================================================= */
+
+.product-content {
+
+    padding:
+        20px 22px 24px;
+}
+
+
+.product-brand {
+
+    margin-bottom:
+        7px;
+
+    color:
+        var(--green);
+
+    font-size:
+        10px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        1.5px;
+
+    text-transform:
+        uppercase;
+}
+
+
+.product-name {
+
+    min-height:
+        48px;
+
+    margin-bottom:
+        16px;
+
+    color:
+        var(--petrol);
+
+    font-size:
+        17px;
+
+    font-weight:
+        700;
+
+    line-height:
+        1.35;
+}
+
+
+.product-price {
+
+    margin-bottom:
+        5px;
+
+    color:
+        var(--petrol);
+
+    font-size:
+        21px;
+
+    font-weight:
+        800;
+
+    line-height:
+        1.2;
+}
+
+
+.product-minimum {
+
+    color:
+        var(--text-soft);
+
+    font-size:
+        13px;
+
+    line-height:
+        1.4;
+}
+
+
+/* =========================================================
+   ESTADOS
+   ========================================================= */
+
+.catalog-error,
+.catalog-empty {
+
+    grid-column:
+        1 / -1;
+
+    padding:
+        50px 20px;
+
+    text-align:
+        center;
+
+    color:
+        var(--text-soft);
+
+    background:
+        var(--white);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        var(--radius);
+}
+
+
+/* =========================================================
    RESPONSIVE — TABLET
    ========================================================= */
 
-@media (max-width: 850px) {
+@media (max-width: 900px) {
+
+    .products-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    }
+
 
     .customer-cards {
 
         grid-template-columns:
             1fr;
+
     }
 
 
@@ -907,6 +1296,7 @@ a {
         align-items:
             flex-start;
     }
+
 }
 
 
@@ -922,6 +1312,8 @@ a {
             70px;
     }
 
+
+    /* HEADER */
 
     .header {
 
@@ -968,39 +1360,16 @@ a {
     }
 
 
+    /* HERO */
+
     .hero {
 
         min-height:
-            330px;
+            auto;
     }
 
 
-    .hero-content {
-
-        width:
-            calc(100% - 40px);
-
-        padding:
-            55px 0;
-    }
-
-
-    .hero h1 {
-
-        font-size:
-            42px;
-
-        letter-spacing:
-            -1.5px;
-    }
-
-
-    .hero-description {
-
-        font-size:
-            15px;
-    }
-
+    /* CONTENEDORES */
 
     .section-container {
 
@@ -1012,12 +1381,16 @@ a {
     }
 
 
+    /* TÍTULOS */
+
     .section-heading {
 
         margin-bottom:
             28px;
     }
 
+
+    /* TARJETAS CLIENTE */
 
     .customer-card {
 
@@ -1056,6 +1429,8 @@ a {
     }
 
 
+    /* AYUDA */
+
     .help-card {
 
         padding:
@@ -1079,6 +1454,105 @@ a {
             center;
     }
 
+
+    /* =====================================================
+       CATÁLOGO — MÓVIL
+       ===================================================== */
+
+    .catalog-header .section-container {
+
+        padding:
+            30px 0;
+    }
+
+
+    .back-link {
+
+        margin-bottom:
+            18px;
+
+        font-size:
+            13px;
+    }
+
+
+    .catalog-header h1 {
+
+        font-size:
+            32px;
+    }
+
+
+    .catalog-header #catalog-description {
+
+        font-size:
+            14px;
+    }
+
+
+    .products-section .section-container {
+
+        padding:
+            32px 0 58px;
+    }
+
+
+    /*
+       UNA COLUMNA EN CELULAR
+    */
+
+    .products-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            20px;
+    }
+
+
+    .product-card {
+
+        width:
+            100%;
+    }
+
+
+    .product-image-container {
+
+        aspect-ratio:
+            1 / 1;
+
+        padding:
+            24px;
+    }
+
+
+    .product-content {
+
+        padding:
+            18px 20px 22px;
+    }
+
+
+    .product-name {
+
+        min-height:
+            0;
+
+        font-size:
+            17px;
+    }
+
+
+    .product-price {
+
+        font-size:
+            21px;
+    }
+
+
+    /* MENÚ INFERIOR */
 
     .bottom-nav {
 
