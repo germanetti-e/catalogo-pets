@@ -86,6 +86,27 @@ const productsGrid =
 const cartCount =
     document.getElementById("cart-count");
 
+/* =========================================================
+   IR AL CARRITO
+   ========================================================= */
+
+const cartButton =
+    document.querySelector(".cart-button");
+
+
+if (cartButton) {
+
+    cartButton.addEventListener(
+        "click",
+        () => {
+
+            window.location.href =
+                `carrito.html?tipo=${customerType}`;
+
+        }
+    );
+
+}
 
 /* =========================================================
    CARRITO
