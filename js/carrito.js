@@ -521,92 +521,113 @@ function renderCart() {
 
             return `
 
-                <article
-                    class="cart-product-card"
-                    data-product-code="${product.codigo}"
-                >
+    <article
+        class="cart-product-card"
+        data-product-code="${product.codigo}"
+    >
 
-                    <div class="cart-product-info">
+        <div class="cart-product-image">
 
-
-                        <p class="cart-product-brand">
-                            ${product.marca || ""}
-                        </p>
-
-
-                        <h2 class="cart-product-name">
-                            ${product.producto || ""}
-                        </h2>
-
-
-                        <p class="cart-product-price">
-
-                            ${formatPrice(price)}
-
-                            <span>
-                                + IVA (${iva}%)
-                            </span>
-
-                        </p>
-
-
-                    </div>
-
-
-                    <div class="cart-product-actions">
-
-
-                        <div class="cart-quantity">
-
-
-                            <button
-                                type="button"
-                                class="cart-quantity-button"
-                                data-action="decrease"
-                                data-product-code="${product.codigo}"
-                                aria-label="Disminuir cantidad"
-                            >
-                                −
-                            </button>
-
-
-                            <span
-                                class="cart-quantity-value"
-                            >
-                                ${quantity}
-                            </span>
-
-
-                            <button
-                                type="button"
-                                class="cart-quantity-button"
-                                data-action="increase"
-                                data-product-code="${product.codigo}"
-                                aria-label="Aumentar cantidad"
-                            >
-                                +
-                            </button>
-
-
-                        </div>
-
-
-                        <strong
-                            class="cart-product-subtotal"
+            ${
+                product.imagen
+                    ? `
+                        <img
+                            src="assets/assets/productos/${String(product.imagen).trim()}.png"
+                            alt="${product.producto || ""}"
+                            loading="lazy"
                         >
-                            ${formatPrice(productSubtotal)}
-                        </strong>
+                      `
+                    : `
+                        <div class="cart-product-image-placeholder">
+                            🐾
+                        </div>
+                      `
+            }
+
+        </div>
 
 
-                    </div>
+        <div class="cart-product-info">
 
 
-                </article>
+            <p class="cart-product-brand">
+                ${product.marca || ""}
+            </p>
 
-            `;
 
-        }).join("");
+            <h2 class="cart-product-name">
+                ${product.producto || ""}
+            </h2>
 
+
+            <p class="cart-product-price">
+
+                ${formatPrice(price)}
+
+                <span>
+                    + IVA (${iva}%)
+                </span>
+
+            </p>
+
+
+        </div>
+
+
+        <div class="cart-product-actions">
+
+
+            <div class="cart-quantity">
+
+
+                <button
+                    type="button"
+                    class="cart-quantity-button"
+                    data-action="decrease"
+                    data-product-code="${product.codigo}"
+                    aria-label="Disminuir cantidad"
+                >
+                    −
+                </button>
+
+
+                <span
+                    class="cart-quantity-value"
+                >
+                    ${quantity}
+                </span>
+
+
+                <button
+                    type="button"
+                    class="cart-quantity-button"
+                    data-action="increase"
+                    data-product-code="${product.codigo}"
+                    aria-label="Aumentar cantidad"
+                >
+                    +
+                </button>
+
+
+            </div>
+
+
+            <strong
+                class="cart-product-subtotal"
+            >
+                ${formatPrice(productSubtotal)}
+            </strong>
+
+
+        </div>
+
+
+    </article>
+
+        `;
+
+    }).join("");
+           
 
     /* =====================================================
        ACTUALIZAR INFORMACIÓN
