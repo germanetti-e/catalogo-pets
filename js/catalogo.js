@@ -435,10 +435,72 @@ function addToCart(
     }
 
 
-    cart.push(product);
+    /* =======================================================
+       CANTIDAD INICIAL
+       Se agrega automáticamente el pedido mínimo
+       ======================================================= */
+
+    const minimum =
+        Number(
+            product[selectedCustomer.minimumField]
+        );
+
+
+    const quantity =
+        Number.isFinite(minimum) &&
+        minimum > 0
+            ? minimum
+            : 1;
+
+
+    /* =======================================================
+       AGREGAR LAS UNIDADES AL CARRITO
+       ======================================================= */
+
+    for (
+        let i = 0;
+        i < quantity;
+        i++
+    ) {
+
+        cart.push(product);
+
+    }
 
 
     updateCartCount();
+
+
+    /* =======================================================
+       CAMBIO TEMPORAL DEL BOTÓN
+       ======================================================= */
+
+    button.textContent =
+        `✓ Agregado (${quantity})`;
+
+    button.classList.add(
+        "added"
+    );
+
+    button.disabled =
+        true;
+
+
+    setTimeout(() => {
+
+        button.textContent =
+            "Agregar";
+
+        button.classList.remove(
+            "added"
+        );
+
+        button.disabled =
+            false;
+
+    }, 1200);
+
+}
 
 
     /* =======================================================
