@@ -454,87 +454,53 @@ function addToCart(
 
 
     /* =======================================================
-       AGREGAR LAS UNIDADES AL CARRITO
-       ======================================================= */
+   AGREGAR LAS UNIDADES AL CARRITO
+   ======================================================= */
 
-    for (
-        let i = 0;
-        i < quantity;
-        i++
-    ) {
+for (
+    let i = 0;
+    i < quantity;
+    i++
+) {
 
-        cart.push(product);
-
-    }
-
-
-    updateCartCount();
-
-
-    /* =======================================================
-       CAMBIO TEMPORAL DEL BOTÓN
-       ======================================================= */
-
-    button.textContent =
-        `✓ Agregado (${quantity})`;
-
-    button.classList.add(
-        "added"
-    );
-
-    button.disabled =
-        true;
-
-
-    setTimeout(() => {
-
-        button.textContent =
-            "Agregar";
-
-        button.classList.remove(
-            "added"
-        );
-
-        button.disabled =
-            false;
-
-    }, 1200);
+    cart.push(product);
 
 }
 
 
-    /* =======================================================
-       CAMBIO TEMPORAL DEL BOTÓN
-       ======================================================= */
+updateCartCount();
+
+
+/* =======================================================
+   CAMBIO TEMPORAL DEL BOTÓN
+   ======================================================= */
+
+button.textContent =
+    `✓ Agregado (${quantity})`;
+
+button.classList.add(
+    "added"
+);
+
+button.disabled =
+    true;
+
+
+setTimeout(() => {
 
     button.textContent =
-        "✓ Agregado";
+        "Agregar";
 
-    button.classList.add(
+    button.classList.remove(
         "added"
     );
 
     button.disabled =
-        true;
+        false;
 
-
-    setTimeout(() => {
-
-        button.textContent =
-            "Agregar";
-
-        button.classList.remove(
-            "added"
-        );
-
-        button.disabled =
-            false;
-
-    }, 1200);
+}, 1200);
 
 }
-
-
 /* =========================================================
    ACTUALIZAR CONTADOR DEL CARRITO
    ========================================================= */
