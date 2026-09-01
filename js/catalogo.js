@@ -83,6 +83,16 @@ const catalogDescription =
 const productsGrid =
     document.getElementById("products-grid");
 
+const cartCount =
+    document.getElementById("cart-count");
+
+
+/* =========================================================
+   CARRITO
+   ========================================================= */
+
+let cart = [];
+
 
 /* =========================================================
    ACTUALIZAR ENCABEZADO
@@ -95,12 +105,14 @@ if (customerKicker) {
 
 }
 
+
 if (catalogTitle) {
 
     catalogTitle.textContent =
         "Productos";
 
 }
+
 
 if (catalogDescription) {
 
@@ -184,7 +196,7 @@ async function loadProducts() {
 
 
         /* =================================================
-           FILTRAR PRODUCTOS ACTIVOS
+           FILTRAR Y ORDENAR
            ================================================= */
 
         const activeProducts =
@@ -194,21 +206,11 @@ async function loadProducts() {
                         .trim()
                         .toUpperCase() === "SI"
                 )
-
-
-                /* =============================================
-                   ORDENAR PRODUCTOS
-                   ============================================= */
-
                 .sort((a, b) =>
                     Number(a.orden || 0) -
                     Number(b.orden || 0)
                 );
 
-
-        /* =================================================
-           MOSTRAR PRODUCTOS
-           ================================================= */
 
         renderProducts(activeProducts);
 
@@ -254,10 +256,6 @@ function renderProducts(products) {
     }
 
 
-    /* =======================================================
-       SIN PRODUCTOS
-       ======================================================= */
-
     if (products.length === 0) {
 
         productsGrid.innerHTML = `
@@ -275,10 +273,6 @@ function renderProducts(products) {
     }
 
 
-    /* =======================================================
-       CREAR TARJETAS
-       ======================================================= */
-
     productsGrid.innerHTML =
         products.map(product => {
 
@@ -288,12 +282,18 @@ function renderProducts(products) {
             const minimum =
                 product[selectedCustomer.minimumField];
 
+            const iva =
+                Number(product.iva);
+
             const image =
                 getProductImage(product.imagen);
 
 
             return `
-                <article class="product-card">
+                <article
+                    class="product-card"
+                    data-product-code="${product.codigo}"
+                >
 
                     <div class="product-image-container">
 
@@ -323,17 +323,32 @@ function renderProducts(products) {
                             ${product.marca || ""}
                         </p>
 
+
                         <h2 class="product-name">
                             ${product.producto || ""}
                         </h2>
 
+
                         <p class="product-price">
                             ${formatPrice(price)}
+                            <span class="price-iva">
+                                + IVA (${iva}%)
+                            </span>
                         </p>
+
 
                         <p class="product-minimum">
                             Pedido mínimo: ${minimum}
                         </p>
+
+
+                        <button
+                            type="button"
+                            class="add-to-cart-button"
+                            data-product-code="${product.codigo}"
+                        >
+                            Agregar
+                        </button>
 
                     </div>
 
@@ -341,6 +356,114 @@ function renderProducts(products) {
             `;
 
         }).join("");
+
+
+    /* =======================================================
+       BOTONES AGREGAR
+       ======================================================= */
+
+    const addButtons =
+        document.querySelectorAll(
+            ".add-to-cart-button"
+        );
+
+
+    addButtons.forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                const productCode =
+                    button.dataset.productCode;
+
+                addToCart(
+                    productCode,
+                    products,
+                    button
+                );
+
+            }
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   AGREGAR AL CARRITO
+   ========================================================= */
+
+function addToCart(
+    productCode,
+    products,
+    button
+) {
+
+    const product =
+        products.find(
+            item =>
+                String(item.codigo) ===
+                String(productCode)
+        );
+
+
+    if (!product) {
+        return;
+    }
+
+
+    cart.push(product);
+
+
+    updateCartCount();
+
+
+    /* =======================================================
+       CAMBIO TEMPORAL DEL BOTÓN
+       ======================================================= */
+
+    button.textContent =
+        "✓ Agregado";
+
+    button.classList.add(
+        "added"
+    );
+
+    button.disabled =
+        true;
+
+
+    setTimeout(() => {
+
+        button.textContent =
+            "Agregar";
+
+        button.classList.remove(
+            "added"
+        );
+
+        button.disabled =
+            false;
+
+    }, 1200);
+
+}
+
+
+/* =========================================================
+   ACTUALIZAR CONTADOR DEL CARRITO
+   ========================================================= */
+
+function updateCartCount() {
+
+    if (!cartCount) {
+        return;
+    }
+
+    cartCount.textContent =
+        cart.length;
 
 }
 
