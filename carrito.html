@@ -1,1 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Carrito | Saboriemos Pets</title>
+
+    <meta
+        name="description"
+        content="Carrito de compras Saboriemos Pets."
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/styles.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+     ===================================================== -->
+
+<header class="header">
+
+    <div class="header-container">
+
+        <button
+            class="menu-button"
+            type="button"
+            aria-label="Abrir menú"
+        >
+            ☰
+        </button>
+
+
+        <a
+            href="index.html"
+            class="logo"
+            aria-label="Saboriemos Pets - Inicio"
+        >
+
+            <img
+                src="assets/logo/Logo_Saboriemos_Pets-06%20(4).png"
+                alt="Saboriemos Pets"
+            >
+
+        </a>
+
+
+        <button
+            class="cart-button"
+            type="button"
+            aria-label="Ver carrito"
+        >
+
+            <span class="cart-icon">
+                🛒
+            </span>
+
+            <span
+                class="cart-count"
+                id="cart-count"
+            >
+                0
+            </span>
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     CONTENIDO DEL CARRITO
+     ===================================================== -->
+
+<main class="cart-page">
+
+
+    <!-- =================================================
+         CONTINUAR COMPRANDO
+         ================================================= -->
+
+    <section class="cart-top">
+
+        <div class="section-container">
+
+            <a
+                href="javascript:history.back()"
+                class="back-link"
+            >
+                ← Continuar comprando
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         ESTADO DE LA COMPRA
+         ================================================= -->
+
+    <section class="cart-status-section">
+
+        <div class="section-container">
+
+
+            <div class="cart-status-card">
+
+
+                <!-- =====================================
+                     ENCABEZADO
+                     ===================================== -->
+
+                <div class="cart-status-heading">
+
+                    <div class="cart-status-icon">
+                        🚚
+                    </div>
+
+                    <h1>
+                        Estado de tu compra
+                    </h1>
+
+                </div>
+
+
+
+                <!-- =====================================
+                     SUBTOTAL
+                     ===================================== -->
+
+                <div class="cart-subtotal">
+
+                    <p class="cart-subtotal-label">
+                        Subtotal (sin IVA)
+                    </p>
+
+                    <p
+                        class="cart-subtotal-value"
+                        id="cart-subtotal"
+                    >
+                        $0
+                    </p>
+
+                </div>
+
+
+
+                <!-- =====================================
+                     BARRA DE PROGRESO
+                     ===================================== -->
+
+                <div class="cart-progress-container">
+
+                    <div class="cart-progress-track">
+
+                        <div
+                            class="cart-progress-fill"
+                            id="cart-progress-fill"
+                        >
+                        </div>
+
+                        <div
+                            class="cart-progress-marker"
+                            id="cart-progress-marker"
+                        >
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =====================================
+                     HITOS
+                     ===================================== -->
+
+                <div class="cart-milestones">
+
+
+                    <div class="cart-milestone">
+
+                        <strong>
+                            $100.000
+                        </strong>
+
+                        <span>
+                            Pedido mínimo
+                        </span>
+
+                    </div>
+
+
+                    <div class="cart-milestone">
+
+                        <strong>
+                            $250.000
+                        </strong>
+
+                        <span>
+                            Envío GRATIS
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =====================================
+                     MENSAJE DE ESTADO
+                     ===================================== -->
+
+                <div
+                    class="cart-status-message"
+                    id="cart-status-message"
+                >
+
+                    <div class="cart-status-message-title">
+
+                        <span class="cart-status-symbol">
+                            ×
+                        </span>
+
+                        <strong>
+                            Aún no alcanzas el pedido mínimo.
+                        </strong>
+
+                    </div>
+
+
+                    <p>
+                        Te faltan
+                        <strong id="cart-amount-missing">
+                            $100.000
+                        </strong>
+                        para realizar tu solicitud.
+                    </p>
+
+                </div>
+
+
+
+                <!-- =====================================
+                     TARIFAS DE ENVÍO
+                     ===================================== -->
+
+                <div class="shipping-rates">
+
+
+                    <button
+                        type="button"
+                        class="shipping-rates-toggle"
+                        aria-expanded="true"
+                    >
+
+                        <span>
+                            Ver tarifas de envío
+                        </span>
+
+                        <span class="shipping-rates-arrow">
+                            ▲
+                        </span>
+
+                    </button>
+
+
+
+                    <div
+                        class="shipping-rates-content"
+                        id="shipping-rates-content"
+                    >
+
+
+                        <div class="shipping-rate">
+
+                            <span>
+                                Desde $250.000
+                            </span>
+
+                            <strong>
+                                GRATIS
+                            </strong>
+
+                        </div>
+
+
+                        <div class="shipping-rate">
+
+                            <span>
+                                $200.000 - $249.999
+                            </span>
+
+                            <strong>
+                                $5.000
+                            </strong>
+
+                        </div>
+
+
+                        <div class="shipping-rate">
+
+                            <span>
+                                $150.000 - $199.999
+                            </span>
+
+                            <strong>
+                                $8.000
+                            </strong>
+
+                        </div>
+
+
+                        <div class="shipping-rate">
+
+                            <span>
+                                $100.000 - $149.999
+                            </span>
+
+                            <strong>
+                                $12.000
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =====================================
+                     NOTA
+                     ===================================== -->
+
+                <p class="shipping-note">
+
+                    Todos los valores corresponden
+                    al subtotal antes de IVA.
+
+                </p>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         PRODUCTOS DEL CARRITO
+         ================================================= -->
+
+    <section class="cart-products-section">
+
+        <div class="section-container">
+
+            <div
+                class="cart-products"
+                id="cart-products"
+            >
+                <!-- Productos dinámicos -->
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     NAVEGACIÓN INFERIOR
+     ===================================================== -->
+
+<nav
+    class="bottom-nav"
+    aria-label="Navegación principal"
+>
+
+
+    <a
+        href="index.html"
+        class="bottom-nav-item"
+    >
+
+        <span class="bottom-nav-icon">
+            ⌂
+        </span>
+
+        <span>
+            Inicio
+        </span>
+
+    </a>
+
+
+    <a
+        href="#"
+        class="bottom-nav-item"
+    >
+
+        <span class="bottom-nav-icon">
+            ✦
+        </span>
+
+        <span>
+            Promociones
+        </span>
+
+    </a>
+
+
+    <a
+        href="#"
+        class="bottom-nav-item"
+    >
+
+        <span class="bottom-nav-icon">
+            ♙
+        </span>
+
+        <span>
+            Mis datos
+        </span>
+
+    </a>
+
+
+</nav>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+
+<script src="js/carrito.js"></script>
+
+
+</body>
+
+</html>
