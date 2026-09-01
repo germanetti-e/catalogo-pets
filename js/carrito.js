@@ -207,180 +207,196 @@ function updateSubtotal() {
 
 
 /* =========================================================
-   MOSTRAR PRODUCTOS
+   ACTUALIZAR ESTADO DE LA COMPRA
    ========================================================= */
 
-function renderCart() {
+function updatePurchaseStatus() {
 
-    if (!cartProducts) {
-        return;
-    }
-
-
-    if (cart.length === 0) {
-
-        cartProducts.innerHTML = `
-
-            <div class="cart-empty">
-
-                <p>
-                    Tu carrito está vacío.
-                </p>
-
-                <a
-                    href="index.html"
-                    class="whatsapp-button"
-                >
-                    Ver productos
-                </a>
-
-            </div>
-
-        `;
-
-        updateCartCount();
-        updateSubtotal();
-
-        return;
-
-    }
+    const subtotal =
+        calculateSubtotal();
 
 
-    const groupedCart =
-        getGroupedCart();
+    const minimumOrder =
+        100000;
 
 
-    cartProducts.innerHTML =
-        groupedCart.map(item => {
-
-            const product =
-                item.product;
-
-            const quantity =
-                item.quantity;
-
-            const price =
-                Number(
-                    product[
-                        selectedCustomer.priceField
-                    ]
-                ) || 0;
-
-            const productSubtotal =
-                price * quantity;
+    const freeShipping =
+        250000;
 
 
-            return `
-
-                <article
-                    class="cart-product-card"
-                    data-product-code="${product.codigo}"
-                >
-
-                    <div class="cart-product-info">
-
-                        <p class="cart-product-brand">
-                            ${product.marca || ""}
-                        </p>
-
-                        <h2 class="cart-product-name">
-                            ${product.producto || ""}
-                        </h2>
-
-                        <p class="cart-product-price">
-                            ${formatPrice(price)}
-                            <span>
-                                + IVA (${Number(product.iva) || 0}%)
-                            </span>
-                        </p>
-
-                    </div>
+    const progressFill =
+        document.getElementById(
+            "cart-progress-fill"
+        );
 
 
-                    <div class="cart-product-actions">
-
-                        <div class="cart-quantity">
-
-                            <button
-                                type="button"
-                                class="cart-quantity-button"
-                                data-action="decrease"
-                                data-product-code="${product.codigo}"
-                                aria-label="Disminuir cantidad"
-                            >
-                                −
-                            </button>
-
-                            <span class="cart-quantity-value">
-                                ${quantity}
-                            </span>
-
-                            <button
-                                type="button"
-                                class="cart-quantity-button"
-                                data-action="increase"
-                                data-product-code="${product.codigo}"
-                                aria-label="Aumentar cantidad"
-                            >
-                                +
-                            </button>
-
-                        </div>
+    const progressMarker =
+        document.getElementById(
+            "cart-progress-marker"
+        );
 
 
-                        <strong class="cart-product-subtotal">
-                            ${formatPrice(productSubtotal)}
-                        </strong>
-
-                    </div>
-
-                </article>
-
-            `;
-
-        }).join("");
-
-
-    updateCartCount();
-
-    updateSubtotal();
+    const statusMessage =
+        document.getElementById(
+            "cart-status-message"
+        );
 
 
     /* =====================================================
-       BOTONES DE CANTIDAD
+       PORCENTAJE DE LA BARRA
+       La barra llega al 100% con $250.000
        ===================================================== */
 
-    const quantityButtons =
-        document.querySelectorAll(
-            ".cart-quantity-button"
+    const progress =
+        Math.min(
+            (subtotal / freeShipping) * 100,
+            100
         );
 
 
-    quantityButtons.forEach(button => {
+    if (progressFill) {
 
-        button.addEventListener(
-            "click",
-            () => {
+        progressFill.style.width =
+            `${progress}%`;
 
-                const productCode =
-                    button.dataset.productCode;
-
-                const action =
-                    button.dataset.action;
+    }
 
 
-                changeQuantity(
-                    productCode,
-                    action
-                );
+    if (progressMarker) {
 
-            }
-        );
+        progressMarker.style.left =
+            `${progress}%`;
 
-    });
+    }
+
+
+    /* =====================================================
+       MENOS DEL PEDIDO MÍNIMO
+       ===================================================== */
+
+    if (subtotal < minimumOrder) {
+
+        const missing =
+            minimumOrder - subtotal;
+
+
+        if (statusMessage) {
+
+            statusMessage.innerHTML = `
+
+                <div class="cart-status-message-title">
+
+                    <span class="cart-status-symbol">
+                        ×
+                    </span>
+
+                    <strong>
+                        Aún no alcanzas el pedido mínimo.
+                    </strong>
+
+                </div>
+
+
+                <p>
+                    Te faltan
+                    <strong>
+                        ${formatPrice(missing)}
+                    </strong>
+                    para realizar tu solicitud.
+                </p>
+
+            `;
+
+        }
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       PEDIDO MÍNIMO ALCANZADO
+       PERO AÚN NO HAY ENVÍO GRATIS
+       ===================================================== */
+
+    if (
+        subtotal >= minimumOrder &&
+        subtotal < freeShipping
+    ) {
+
+        const missing =
+            freeShipping - subtotal;
+
+
+        if (statusMessage) {
+
+            statusMessage.innerHTML = `
+
+                <div class="cart-status-message-title">
+
+                    <span class="cart-status-symbol">
+                        ✓
+                    </span>
+
+                    <strong>
+                        ¡Pedido mínimo alcanzado!
+                    </strong>
+
+                </div>
+
+
+                <p>
+                    Te faltan
+                    <strong>
+                        ${formatPrice(missing)}
+                    </strong>
+                    para obtener envío GRATIS.
+                </p>
+
+            `;
+
+        }
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       ENVÍO GRATIS
+       ===================================================== */
+
+    if (subtotal >= freeShipping) {
+
+        if (statusMessage) {
+
+            statusMessage.innerHTML = `
+
+                <div class="cart-status-message-title">
+
+                    <span class="cart-status-symbol">
+                        ✓
+                    </span>
+
+                    <strong>
+                        ¡Tienes envío GRATIS!
+                    </strong>
+
+                </div>
+
+
+                <p>
+                    Tu compra cumple con el valor
+                    necesario para obtener envío GRATIS.
+                </p>
+
+            `;
+
+        }
+
+    }
 
 }
-
 
 /* =========================================================
    CAMBIAR CANTIDAD
