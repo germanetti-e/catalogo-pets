@@ -298,40 +298,57 @@ function renderProducts(products) {
         products.map(product => {
 
             const price =
-                product[selectedCustomer.priceField];
+                product[
+                    selectedCustomer.priceField
+                ];
+
 
             const minimum =
-                product[selectedCustomer.minimumField];
+                product[
+                    selectedCustomer.minimumField
+                ];
+
 
             const iva =
                 Number(product.iva);
 
+
             const image =
-                getProductImage(product.imagen);
+                getProductImage(
+                    product.imagen
+                );
 
 
             return `
+
                 <article
                     class="product-card"
                     data-product-code="${product.codigo}"
                 >
 
+
                     <div class="product-image-container">
 
                         ${
                             image
+
                                 ? `
+
                                     <img
                                         src="${image}"
                                         alt="${product.producto || ""}"
                                         class="product-image"
                                         loading="lazy"
                                     >
+
                                   `
+
                                 : `
+
                                     <div class="product-image-placeholder">
                                         🐾
                                     </div>
+
                                   `
                         }
 
@@ -339,6 +356,7 @@ function renderProducts(products) {
 
 
                     <div class="product-content">
+
 
                         <p class="product-brand">
                             ${product.marca || ""}
@@ -351,15 +369,25 @@ function renderProducts(products) {
 
 
                         <p class="product-price">
+
                             ${formatPrice(price)}
+
+                            <span class="price-unit">
+                                unidad
+                            </span>
+
                             <span class="price-iva">
                                 + IVA (${iva}%)
                             </span>
+
                         </p>
 
 
                         <p class="product-minimum">
-                            Pedido mínimo: ${minimum}
+
+                            Pedido mínimo:
+                            ${minimum}
+
                         </p>
 
 
@@ -371,12 +399,49 @@ function renderProducts(products) {
                             Agregar
                         </button>
 
+
                     </div>
 
+
                 </article>
+
             `;
 
         }).join("");
+
+
+    /* =======================================================
+       BOTONES AGREGAR
+       ======================================================= */
+
+    const addButtons =
+        document.querySelectorAll(
+            ".add-to-cart-button"
+        );
+
+
+    addButtons.forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                const productCode =
+                    button.dataset.productCode;
+
+
+                addToCart(
+                    productCode,
+                    products,
+                    button
+                );
+
+            }
+        );
+
+    });
+
+}
 
 
     /* =======================================================
