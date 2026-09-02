@@ -489,140 +489,148 @@ function renderCart() {
 
 
     /* =====================================================
-       GENERAR HTML
-       ===================================================== */
+   GENERAR HTML
+   ===================================================== */
 
-    cartProducts.innerHTML =
-        groupedCart.map(item => {
+cartProducts.innerHTML =
+    groupedCart.map(item => {
 
-            const product =
-                item.product;
-
-
-            const quantity =
-                item.quantity;
+        const product =
+            item.product;
 
 
-            const price =
-                Number(
-                    product[
-                        selectedCustomer.priceField
-                    ]
-                ) || 0;
+        const quantity =
+            item.quantity;
 
 
-            const productSubtotal =
-                price * quantity;
+        const price =
+            Number(
+                product[
+                    selectedCustomer.priceField
+                ]
+            ) || 0;
 
 
-            const iva =
-                Number(product.iva) || 0;
+        const productSubtotal =
+            price * quantity;
 
 
-            return `
-
-    <article
-        class="cart-product-card"
-        data-product-code="${product.codigo}"
-    >
-
-        <div class="cart-product-image">
-
-            ${
-                product.imagen
-                    ? `
-                        <img
-                            src="assets/assets/productos/${String(product.imagen).trim()}.png"
-                            alt="${product.producto || ""}"
-                            loading="lazy"
-                        >
-                      `
-                    : `
-                        <div class="cart-product-image-placeholder">
-                            🐾
-                        </div>
-                      `
-            }
-
-        </div>
+        const iva =
+            Number(product.iva) || 0;
 
 
-        <div class="cart-product-info">
+        return `
 
-
-            <p class="cart-product-brand">
-                ${product.marca || ""}
-            </p>
-
-
-            <h2 class="cart-product-name">
-                ${product.producto || ""}
-            </h2>
-
-
-            <p class="cart-product-price">
-
-                ${formatPrice(price)}
-
-                <span>
-                    + IVA (${iva}%)
-                </span>
-
-            </p>
-
-
-        </div>
-
-
-        <div class="cart-product-actions">
-
-
-            <div class="cart-quantity">
-
-
-                <button
-                    type="button"
-                    class="cart-quantity-button"
-                    data-action="decrease"
-                    data-product-code="${product.codigo}"
-                    aria-label="Disminuir cantidad"
-                >
-                    −
-                </button>
-
-
-                <span
-                    class="cart-quantity-value"
-                >
-                    ${quantity}
-                </span>
-
-
-                <button
-                    type="button"
-                    class="cart-quantity-button"
-                    data-action="increase"
-                    data-product-code="${product.codigo}"
-                    aria-label="Aumentar cantidad"
-                >
-                    +
-                </button>
-
-
-            </div>
-
-
-            <strong
-                class="cart-product-subtotal"
+            <article
+                class="cart-product-card"
+                data-product-code="${product.codigo}"
             >
-                ${formatPrice(productSubtotal)}
-            </strong>
 
 
-        </div>
+                <!-- IMAGEN -->
+
+                <div class="cart-product-image">
+
+                    ${
+                        product.imagen
+
+                            ? `
+
+                                <img
+                                    src="assets/assets/productos/${String(product.imagen).trim()}.png"
+                                    alt="${product.producto || ""}"
+                                    loading="lazy"
+                                >
+
+                              `
+
+                            : `
+
+                                <div class="cart-product-image-placeholder">
+                                    🐾
+                                </div>
+
+                              `
+                    }
+
+                </div>
 
 
-    </article>
+                <!-- INFORMACIÓN DEL PRODUCTO -->
+
+                <div class="cart-product-info">
+
+
+                    <h2 class="cart-product-name">
+                        ${product.producto || ""}
+                    </h2>
+
+
+                    <p class="cart-product-price">
+
+                        ${formatPrice(price)}
+
+                        <span>
+                            + IVA (${iva}%)
+                        </span>
+
+                    </p>
+
+
+                </div>
+
+
+                <!-- CANTIDAD Y SUBTOTAL -->
+
+                <div class="cart-product-actions">
+
+
+                    <div class="cart-quantity">
+
+
+                        <button
+                            type="button"
+                            class="cart-quantity-button"
+                            data-action="decrease"
+                            data-product-code="${product.codigo}"
+                            aria-label="Disminuir cantidad"
+                        >
+                            −
+                        </button>
+
+
+                        <span
+                            class="cart-quantity-value"
+                        >
+                            ${quantity}
+                        </span>
+
+
+                        <button
+                            type="button"
+                            class="cart-quantity-button"
+                            data-action="increase"
+                            data-product-code="${product.codigo}"
+                            aria-label="Aumentar cantidad"
+                        >
+                            +
+                        </button>
+
+
+                    </div>
+
+
+                    <strong
+                        class="cart-product-subtotal"
+                    >
+                        ${formatPrice(productSubtotal)}
+                    </strong>
+
+
+                </div>
+
+
+            </article>
 
         `;
 
