@@ -2711,25 +2711,12 @@ a {
 
     min-width:
         0;
-}
 
+    width:
+        100%;
 
-.cart-product-brand {
-
-    margin:
-        0 0 5px;
-
-    color:
-        #897831;
-
-    font-size:
-        12px;
-
-    font-weight:
-        700;
-
-    text-transform:
-        uppercase;
+    overflow:
+        hidden;
 }
 
 
@@ -2749,6 +2736,12 @@ a {
 
     line-height:
         1.2;
+
+    overflow-wrap:
+        anywhere;
+
+    word-break:
+        break-word;
 }
 
 
@@ -2768,6 +2761,9 @@ a {
 
     line-height:
         1.2;
+
+    overflow-wrap:
+        break-word;
 }
 
 
