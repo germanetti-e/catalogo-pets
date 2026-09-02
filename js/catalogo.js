@@ -313,6 +313,10 @@ function renderProducts(products) {
                 Number(product.iva);
 
 
+            const minimumPrice =
+                Number(price) * Number(minimum);
+
+
             const image =
                 getProductImage(
                     product.imagen
@@ -370,14 +374,16 @@ function renderProducts(products) {
 
                         <p class="product-price">
 
-                            ${formatPrice(price)}
-
-                            <span class="price-unit">
-                                unidad
-                            </span>
+                            <strong>
+                                ${formatPrice(price)}
+                            </strong>
 
                             <span class="price-iva">
                                 + IVA (${iva}%)
+                            </span>
+
+                            <span class="price-unit-label">
+                                Precio unidad
                             </span>
 
                         </p>
@@ -387,6 +393,23 @@ function renderProducts(products) {
 
                             Pedido mínimo:
                             ${minimum}
+
+                        </p>
+
+
+                        <p class="product-minimum-price">
+
+                            <strong>
+                                ${formatPrice(minimumPrice)}
+                            </strong>
+
+                            <span class="price-iva">
+                                + IVA (${iva}%)
+                            </span>
+
+                            <span class="price-unit-label">
+                                Precio pedido mínimo
+                            </span>
 
                         </p>
 
@@ -408,7 +431,7 @@ function renderProducts(products) {
             `;
 
         }).join("");
-
+}
 
     /* =======================================================
        BOTONES AGREGAR
