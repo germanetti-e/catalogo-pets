@@ -1401,6 +1401,169 @@ a {
 
 
 /* =========================================================
+   RESPONSIVE — CARRITO MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+
+    .cart-product-card {
+
+        grid-template-columns:
+            78px minmax(0, 1fr);
+
+        gap:
+            14px;
+
+        padding:
+            14px;
+
+        width:
+            100%;
+
+        box-sizing:
+            border-box;
+    }
+
+
+    .cart-product-image {
+
+        width:
+            78px;
+
+        min-width:
+            78px;
+
+    }
+
+
+    .cart-product-image img {
+
+        display:
+            block;
+
+        width:
+            100%;
+
+        max-width:
+            100%;
+
+        height:
+            auto;
+    }
+
+
+    .cart-product-info {
+
+        min-width:
+            0;
+
+        width:
+            100%;
+
+        max-width:
+            100%;
+
+        overflow:
+            hidden;
+    }
+
+
+    .cart-product-name {
+
+        width:
+            100%;
+
+        max-width:
+            100%;
+
+        margin:
+            0 0 8px;
+
+        font-size:
+            16px;
+
+        line-height:
+            1.2;
+
+        overflow-wrap:
+            anywhere;
+
+        word-break:
+            break-word;
+    }
+
+
+    .cart-product-price {
+
+        max-width:
+            100%;
+
+        font-size:
+            16px;
+
+        line-height:
+            1.2;
+
+        overflow-wrap:
+            break-word;
+    }
+
+
+    .cart-product-price span {
+
+        font-size:
+            10px;
+
+        white-space:
+            nowrap;
+    }
+
+
+    .cart-product-actions {
+
+        grid-column:
+            2;
+
+        width:
+            100%;
+
+        min-width:
+            0;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            space-between;
+
+        gap:
+            10px;
+    }
+
+
+    .cart-quantity {
+
+        flex-shrink:
+            0;
+    }
+
+
+    .cart-product-subtotal {
+
+        flex-shrink:
+            0;
+
+        white-space:
+            nowrap;
+    }
+
+}
+
+/* =========================================================
    RESPONSIVE — MÓVIL
    ========================================================= */
 
