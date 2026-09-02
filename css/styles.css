@@ -1173,8 +1173,8 @@ a {
 
 .product-price {
 
-    margin-bottom:
-        5px;
+    margin:
+        0 0 5px 0;
 
     color:
         var(--petrol);
@@ -1186,8 +1186,34 @@ a {
         800;
 
     line-height:
-        1.2;
+        1.25;
+
+    display:
+        flex;
+
+    align-items:
+        baseline;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        0 5px;
 }
+
+
+.product-price strong {
+
+    font-size:
+        inherit;
+
+    font-weight:
+        800;
+
+    color:
+        var(--petrol);
+}
+
 
 .price-iva {
 
@@ -1204,7 +1230,27 @@ a {
         nowrap;
 }
 
+
+.price-unit-label {
+
+    font-size:
+        11px;
+
+    font-weight:
+        600;
+
+    color:
+        var(--text-soft);
+
+    white-space:
+        nowrap;
+}
+
+
 .product-minimum {
+
+    margin:
+        0 0 8px 0;
 
     color:
         var(--text-soft);
@@ -1214,6 +1260,50 @@ a {
 
     line-height:
         1.4;
+}
+
+
+.product-minimum-price {
+
+    margin:
+        0 0 14px 0;
+
+    color:
+        var(--petrol);
+
+    font-size:
+        17px;
+
+    font-weight:
+        800;
+
+    line-height:
+        1.25;
+
+    display:
+        flex;
+
+    align-items:
+        baseline;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        0 5px;
+}
+
+
+.product-minimum-price strong {
+
+    font-size:
+        inherit;
+
+    font-weight:
+        800;
+
+    color:
+        var(--petrol);
 }
 
 /* =========================================================
