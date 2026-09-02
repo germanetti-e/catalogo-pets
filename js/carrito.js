@@ -881,6 +881,96 @@ if (cartButton) {
 
 }
 
+/* =========================================================
+   PESTAÑA TARIFAS DE ENVÍO
+   ========================================================= */
+
+const shippingRatesToggle =
+    document.querySelector(
+        ".shipping-rates-toggle"
+    );
+
+
+const shippingRatesContent =
+    document.getElementById(
+        "shipping-rates-content"
+    );
+
+
+const shippingRatesArrow =
+    document.querySelector(
+        ".shipping-rates-arrow"
+    );
+
+
+if (
+    shippingRatesToggle &&
+    shippingRatesContent
+) {
+
+    shippingRatesToggle.addEventListener(
+        "click",
+        () => {
+
+            const isOpen =
+                shippingRatesToggle.getAttribute(
+                    "aria-expanded"
+                ) === "true";
+
+
+            if (isOpen) {
+
+                /* -----------------------------------------
+                   CERRAR TARIFAS
+                   ----------------------------------------- */
+
+                shippingRatesToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+
+                shippingRatesContent.style.display =
+                    "none";
+
+
+                if (shippingRatesArrow) {
+
+                    shippingRatesArrow.textContent =
+                        "▼";
+
+                }
+
+
+            } else {
+
+                /* -----------------------------------------
+                   ABRIR TARIFAS
+                   ----------------------------------------- */
+
+                shippingRatesToggle.setAttribute(
+                    "aria-expanded",
+                    "true"
+                );
+
+
+                shippingRatesContent.style.display =
+                    "block";
+
+
+                if (shippingRatesArrow) {
+
+                    shippingRatesArrow.textContent =
+                        "▲";
+
+                }
+
+            }
+
+        }
+    );
+
+}
 
 /* =========================================================
    INICIAR CARRITO
