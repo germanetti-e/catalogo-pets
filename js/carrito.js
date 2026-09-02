@@ -489,153 +489,185 @@ function renderCart() {
 
 
     /* =====================================================
-   GENERAR HTML
-   ===================================================== */
+       GENERAR HTML
+       ===================================================== */
 
-cartProducts.innerHTML =
-    groupedCart.map(item => {
+    cartProducts.innerHTML =
+        groupedCart.map(item => {
 
-        const product =
-            item.product;
-
-
-        const quantity =
-            item.quantity;
+            const product =
+                item.product;
 
 
-        const price =
-            Number(
-                product[
-                    selectedCustomer.priceField
-                ]
-            ) || 0;
+            const quantity =
+                item.quantity;
 
 
-        const productSubtotal =
-            price * quantity;
+            const price =
+                Number(
+                    product[
+                        selectedCustomer.priceField
+                    ]
+                ) || 0;
 
 
-        const iva =
-            Number(product.iva) || 0;
+            const productSubtotal =
+                price * quantity;
 
 
-        return `
-
-            <article
-                class="cart-product-card"
-                data-product-code="${product.codigo}"
-            >
+            const iva =
+                Number(product.iva) || 0;
 
 
-                <!-- IMAGEN -->
-
-                <div class="cart-product-image">
-
-                    ${
-                        product.imagen
-
-                            ? `
-
-                                <img
-                                    src="assets/assets/productos/${String(product.imagen).trim()}.png"
-                                    alt="${product.producto || ""}"
-                                    loading="lazy"
-                                >
-
-                              `
-
-                            : `
-
-                                <div class="cart-product-image-placeholder">
-                                    🐾
-                                </div>
-
-                              `
-                    }
-
-                </div>
+            const minimum =
+                Number(
+                    product[
+                        selectedCustomer.minimumField
+                    ]
+                ) || 0;
 
 
-                <!-- INFORMACIÓN DEL PRODUCTO -->
+            return `
 
-                <div class="cart-product-info">
-
-
-                    <h2 class="cart-product-name">
-                        ${product.producto || ""}
-                    </h2>
+                <article
+                    class="cart-product-card"
+                    data-product-code="${product.codigo}"
+                >
 
 
-                    <p class="cart-product-price">
+                    <!-- IMAGEN -->
 
-                        ${formatPrice(price)}
+                    <div class="cart-product-image">
 
-                        <span>
-                            + IVA (${iva}%)
-                        </span>
+                        ${
+                            product.imagen
 
-                    </p>
+                                ? `
 
+                                    <img
+                                        src="assets/assets/productos/${String(product.imagen).trim()}.png"
+                                        alt="${product.producto || ""}"
+                                        loading="lazy"
+                                    >
 
-                </div>
+                                  `
 
+                                : `
 
-                <!-- CANTIDAD Y SUBTOTAL -->
+                                    <div class="cart-product-image-placeholder">
+                                        🐾
+                                    </div>
 
-                <div class="cart-product-actions">
+                                  `
+                        }
 
-
-                    <div class="cart-quantity">
-
-
-                        <button
-                            type="button"
-                            class="cart-quantity-button"
-                            data-action="decrease"
-                            data-product-code="${product.codigo}"
-                            aria-label="Disminuir cantidad"
-                        >
-                            −
-                        </button>
+                    </div>
 
 
-                        <span
-                            class="cart-quantity-value"
-                        >
-                            ${quantity}
-                        </span>
+                    <!-- INFORMACIÓN DEL PRODUCTO -->
+
+                    <div class="cart-product-info">
 
 
-                        <button
-                            type="button"
-                            class="cart-quantity-button"
-                            data-action="increase"
-                            data-product-code="${product.codigo}"
-                            aria-label="Aumentar cantidad"
-                        >
-                            +
-                        </button>
+                        <h2 class="cart-product-name">
+                            ${product.producto || ""}
+                        </h2>
+
+
+                        <p class="cart-product-price">
+
+                            <strong>
+                                ${formatPrice(price)}
+                            </strong>
+
+                            <span>
+                                + IVA (${iva}%)
+                            </span>
+
+                            <span class="price-unit-label">
+                                Precio unidad
+                            </span>
+
+                        </p>
+
+
+                        <p class="cart-product-minimum">
+
+                            Pedido mínimo:
+                            ${minimum}
+
+                        </p>
 
 
                     </div>
 
 
-                    <strong
-                        class="cart-product-subtotal"
-                    >
-                        ${formatPrice(productSubtotal)}
-                    </strong>
+                    <!-- CANTIDAD Y PRECIO DE UNIDADES PEDIDAS -->
+
+                    <div class="cart-product-actions">
 
 
-                </div>
+                        <div class="cart-quantity">
 
 
-            </article>
+                            <button
+                                type="button"
+                                class="cart-quantity-button"
+                                data-action="decrease"
+                                data-product-code="${product.codigo}"
+                                aria-label="Disminuir cantidad"
+                            >
+                                −
+                            </button>
 
-        `;
 
-    }).join("");
-           
+                            <span
+                                class="cart-quantity-value"
+                            >
+                                ${quantity}
+                            </span>
+
+
+                            <button
+                                type="button"
+                                class="cart-quantity-button"
+                                data-action="increase"
+                                data-product-code="${product.codigo}"
+                                aria-label="Aumentar cantidad"
+                            >
+                                +
+                            </button>
+
+
+                        </div>
+
+
+                        <div class="cart-product-subtotal">
+
+                            <strong>
+                                ${formatPrice(productSubtotal)}
+                            </strong>
+
+                            <span>
+                                + IVA (${iva}%)
+                            </span>
+
+                            <span class="price-unit-label">
+                                Precio unidades pedidas
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+                </article>
+
+            `;
+
+        }).join("");
+
 
     /* =====================================================
        ACTUALIZAR INFORMACIÓN
@@ -683,7 +715,6 @@ cartProducts.innerHTML =
     });
 
 }
-
 
 /* =========================================================
    CAMBIAR CANTIDAD
