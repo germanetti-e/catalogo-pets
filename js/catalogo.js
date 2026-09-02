@@ -431,7 +431,7 @@ function renderProducts(products) {
             `;
 
         }).join("");
-}
+
 
     /* =======================================================
        BOTONES AGREGAR
@@ -465,40 +465,6 @@ function renderProducts(products) {
     });
 
 }
-
-
-    /* =======================================================
-       BOTONES AGREGAR
-       ======================================================= */
-
-    const addButtons =
-        document.querySelectorAll(
-            ".add-to-cart-button"
-        );
-
-
-    addButtons.forEach(button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                const productCode =
-                    button.dataset.productCode;
-
-                addToCart(
-                    productCode,
-                    products,
-                    button
-                );
-
-            }
-        );
-
-    });
-
-}
-
 
 /* =========================================================
    AGREGAR AL CARRITO
