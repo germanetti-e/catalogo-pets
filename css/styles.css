@@ -3251,3 +3251,98 @@ a {
     font-size:
         18px;
 }
+
+/* =========================================================
+   CARRITO — AJUSTE FINAL MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .cart-product-card {
+        display: grid;
+        grid-template-columns: 78px minmax(0, 1fr);
+        gap: 14px;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 14px;
+        border-radius: 16px;
+    }
+
+    .cart-product-image {
+        width: 78px;
+        height: 78px;
+        min-width: 78px;
+        max-width: 78px;
+        grid-row: 1 / span 2;
+        overflow: hidden;
+    }
+
+    .cart-product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .cart-product-info {
+        min-width: 0;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .cart-product-name {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 0 8px;
+        font-size: 16px;
+        line-height: 1.2;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+
+    .cart-product-price {
+        width: 100%;
+        max-width: 100%;
+        font-size: 16px;
+        line-height: 1.2;
+        overflow-wrap: break-word;
+    }
+
+    .cart-product-price span {
+        font-size: 10px;
+        white-space: nowrap;
+    }
+
+    .cart-product-actions {
+        grid-column: 2;
+        width: 100%;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 8px;
+    }
+
+    .cart-quantity {
+        flex-shrink: 0;
+    }
+
+    .cart-quantity-button {
+        width: 34px;
+        height: 34px;
+    }
+
+    .cart-product-subtotal {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 4px;
+        font-size: 17px;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+}
