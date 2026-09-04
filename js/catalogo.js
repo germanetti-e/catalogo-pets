@@ -588,4 +588,6 @@ function updateCartCount() {
    INICIAR CATÁLOGO
    ========================================================= */
 
+updateCartCount();
+
 loadProducts();
