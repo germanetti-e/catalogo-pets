@@ -112,7 +112,11 @@ if (cartButton) {
    CARRITO
    ========================================================= */
 
-let cart = [];
+let cart = JSON.parse(
+    localStorage.getItem(
+        "saboriemos_cart"
+    ) || "[]"
+);
 
 
 /* =========================================================
