@@ -1491,22 +1491,444 @@ a {
 
 
 /* =========================================================
-   RESPONSIVE — CARRITO MOBILE
+   RESPONSIVE — MOBILE
    ========================================================= */
 
 @media (max-width: 600px) {
 
+    /* =====================================================
+       GENERAL
+       ===================================================== */
+
+    body {
+        padding-bottom:
+            70px;
+    }
+
+
+    /* =====================================================
+       HEADER
+       ===================================================== */
+
+    .header {
+        height:
+            64px;
+    }
+
+    .header-container {
+        padding:
+            0 15px;
+    }
+
+    .menu-button,
+    .cart-button {
+        width:
+            38px;
+
+        height:
+            38px;
+    }
+
+    .logo {
+        width:
+            125px;
+
+        height:
+            45px;
+    }
+
+    .logo img {
+        width:
+            125px;
+
+        max-height:
+            42px;
+    }
+
+
+    /* =====================================================
+       HERO
+       ===================================================== */
+
+    .hero {
+        min-height:
+            auto;
+    }
+
+
+    /* =====================================================
+       CONTENEDORES
+       ===================================================== */
+
+    .section-container {
+        width:
+            calc(100% - 40px);
+
+        padding:
+            58px 0;
+    }
+
+
+    /* =====================================================
+       TÍTULOS
+       ===================================================== */
+
+    .section-heading {
+        margin-bottom:
+            28px;
+    }
+
+
+    /* =====================================================
+       TARJETAS DE TIPO DE CLIENTE
+       ===================================================== */
+
+    .customer-card {
+        padding:
+            22px;
+
+        gap:
+            14px;
+    }
+
+    .customer-icon {
+        width:
+            46px;
+
+        height:
+            46px;
+
+        font-size:
+            21px;
+    }
+
+    .customer-card h3 {
+        font-size:
+            19px;
+    }
+
+    .customer-card p {
+        font-size:
+            13px;
+    }
+
+
+    /* =====================================================
+       AYUDA / WHATSAPP
+       ===================================================== */
+
+    .help-card {
+        padding:
+            28px;
+    }
+
+    .help-content h2 {
+        font-size:
+            27px;
+    }
+
+    .whatsapp-button {
+        width:
+            100%;
+
+        text-align:
+            center;
+    }
+
+
+    /* =====================================================
+       CATÁLOGO
+       ===================================================== */
+
+    .catalog-header .section-container {
+        padding:
+            30px 0;
+    }
+
+    .back-link {
+        margin-bottom:
+            18px;
+
+        font-size:
+            13px;
+    }
+
+    .catalog-header h1 {
+        font-size:
+            32px;
+    }
+
+    .catalog-header #catalog-description {
+        font-size:
+            14px;
+    }
+
+    .products-section .section-container {
+        padding:
+            32px 0 58px;
+    }
+
+    .products-grid {
+        grid-template-columns:
+            1fr;
+
+        gap:
+            20px;
+    }
+
+    .product-card {
+        width:
+            100%;
+    }
+
+    .product-image-container {
+        aspect-ratio:
+            1 / 1;
+
+        padding:
+            24px;
+    }
+
+    .product-content {
+        padding:
+            18px 20px 22px;
+    }
+
+    .product-name {
+        min-height:
+            0;
+
+        font-size:
+            17px;
+    }
+
+    .product-price {
+        font-size:
+            21px;
+    }
+
+
+    /* =====================================================
+       MENÚ INFERIOR
+       ===================================================== */
+
+    .bottom-nav {
+        height:
+            68px;
+    }
+
+    .bottom-nav-item {
+        width:
+            33.333%;
+
+        font-size:
+            10px;
+    }
+
+
+    /* =====================================================
+       CARRITO — PÁGINA
+       ===================================================== */
+
+    .cart-page {
+        padding-bottom:
+            90px;
+    }
+
+
+    /* =====================================================
+       CARRITO — PARTE SUPERIOR
+       ===================================================== */
+
+    .cart-top {
+        padding-top:
+            18px;
+
+        padding-bottom:
+            8px;
+    }
+
+    .cart-top .back-link {
+        font-size:
+            16px;
+    }
+
+
+    /* =====================================================
+       CARRITO — ESTADO DE COMPRA
+       ===================================================== */
+
+    .cart-status-section {
+        padding-top:
+            4px;
+
+        padding-bottom:
+            20px;
+    }
+
+    .cart-status-card {
+        padding:
+            30px 24px;
+
+        border-radius:
+            26px;
+    }
+
+    .cart-status-heading {
+        gap:
+            15px;
+
+        margin-bottom:
+            30px;
+    }
+
+    .cart-status-icon {
+        font-size:
+            32px;
+
+        margin-top:
+            4px;
+    }
+
+    .cart-status-heading h1 {
+        font-size:
+            29px;
+
+        line-height:
+            1.1;
+    }
+
+    .cart-subtotal {
+        margin-bottom:
+            38px;
+    }
+
+    .cart-subtotal-label {
+        font-size:
+            19px;
+    }
+
+    .cart-subtotal-value {
+        font-size:
+            48px;
+    }
+
+    .cart-progress-track {
+        height:
+            11px;
+    }
+
+    .cart-progress-marker {
+        width:
+            31px;
+
+        height:
+            31px;
+
+        border-width:
+            4px;
+    }
+
+    .cart-milestones {
+        margin-bottom:
+            36px;
+    }
+
+    .cart-milestone strong {
+        font-size:
+            21px;
+    }
+
+    .cart-milestone span {
+        font-size:
+            16px;
+    }
+
+    .cart-status-message {
+        margin-bottom:
+            34px;
+    }
+
+    .cart-status-message-title {
+        align-items:
+            flex-start;
+
+        gap:
+            12px;
+
+        font-size:
+            17px;
+    }
+
+    .cart-status-symbol {
+        width:
+            27px;
+
+        height:
+            27px;
+
+        font-size:
+            19px;
+    }
+
+    .cart-status-message p {
+        font-size:
+            18px;
+    }
+
+    .shipping-rates {
+        padding-top:
+            22px;
+    }
+
+    .shipping-rates-toggle {
+        font-size:
+            20px;
+    }
+
+    .shipping-rates-content {
+        margin-top:
+            20px;
+    }
+
+    .shipping-rate {
+        gap:
+            12px;
+
+        padding:
+            13px 0;
+
+        font-size:
+            17px;
+    }
+
+    .shipping-rate strong {
+        font-size:
+            19px;
+    }
+
+    .shipping-note {
+        font-size:
+            12px;
+    }
+
+
+    /* =====================================================
+       CARRITO — PRODUCTOS
+       ===================================================== */
 
     .cart-product-card {
-
         grid-template-columns:
-            78px minmax(0, 1fr);
+            78px 1fr;
 
         gap:
             14px;
 
         padding:
             14px;
+
+        border-radius:
+            16px;
 
         width:
             100%;
@@ -1515,20 +1937,21 @@ a {
             border-box;
     }
 
-
     .cart-product-image {
-
         width:
+            78px;
+
+        height:
             78px;
 
         min-width:
             78px;
 
+        grid-row:
+            1 / span 2;
     }
 
-
     .cart-product-image img {
-
         display:
             block;
 
@@ -1542,9 +1965,7 @@ a {
             auto;
     }
 
-
     .cart-product-info {
-
         min-width:
             0;
 
@@ -1558,9 +1979,7 @@ a {
             hidden;
     }
 
-
     .cart-product-name {
-
         width:
             100%;
 
@@ -1583,8 +2002,9 @@ a {
             break-word;
     }
 
-
     .cart-product-price {
+        width:
+            100%;
 
         max-width:
             100%;
@@ -1599,9 +2019,7 @@ a {
             break-word;
     }
 
-
     .cart-product-price span {
-
         font-size:
             10px;
 
@@ -1610,229 +2028,82 @@ a {
     }
 
 
+    /* =====================================================
+       CARRITO — CANTIDAD + PRECIO
+       ===================================================== */
+
     .cart-product-actions {
-
-    grid-column:
-        2;
-
-    width:
-        100%;
-
-    min-width:
-        0;
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    align-items:
-        flex-start;
-
-    justify-content:
-        flex-start;
-
-    gap:
-        8px;
-
-}
-
-
-.cart-quantity {
-
-    flex-shrink:
-        0;
-
-}
-
-
-.cart-product-subtotal {
-
-    width:
-        100%;
-
-    max-width:
-        100%;
-
-    min-width:
-        0;
-
-    display:
-        flex;
-
-    flex-wrap:
-        wrap;
-
-    align-items:
-        baseline;
-
-    gap:
-        4px;
-
-    white-space:
-        normal;
-
-    overflow-wrap:
-        anywhere;
-
-}
-
-
-/* =========================================================
-   RESPONSIVE — MÓVIL
-   ========================================================= */
-
-@media (max-width: 600px) {
-
-    body {
-
-        padding-bottom:
-            70px;
-    }
-
-
-    /* HEADER */
-
-    .header {
-
-        height:
-            64px;
-    }
-
-
-    .header-container {
-
-        padding:
-            0 15px;
-    }
-
-
-    .menu-button,
-    .cart-button {
-
-        width:
-            38px;
-
-        height:
-            38px;
-    }
-
-
-    .logo {
-
-        width:
-            125px;
-
-        height:
-            45px;
-    }
-
-
-    .logo img {
-
-        width:
-            125px;
-
-        max-height:
-            42px;
-    }
-
-
-    /* HERO */
-
-    .hero {
-
-        min-height:
-            auto;
-    }
-
-
-    /* CONTENEDORES */
-
-    .section-container {
-
-        width:
-            calc(100% - 40px);
-
-        padding:
-            58px 0;
-    }
-
-
-    /* TÍTULOS */
-
-    .section-heading {
-
-        margin-bottom:
-            28px;
-    }
-
-
-    /* TARJETAS CLIENTE */
-
-    .customer-card {
-
-        padding:
-            22px;
-
-        gap:
-            14px;
-    }
-
-
-    .customer-icon {
-
-        width:
-            46px;
-
-        height:
-            46px;
-
-        font-size:
-            21px;
-    }
-
-
-    .customer-card h3 {
-
-        font-size:
-            19px;
-    }
-
-
-    .customer-card p {
-
-        font-size:
-            13px;
-    }
-
-
-    /* AYUDA */
-
-    .help-card {
-
-        padding:
-            28px;
-    }
-
-
-    .help-content h2 {
-
-        font-size:
-            27px;
-    }
-
-
-    .whatsapp-button {
+        grid-column:
+            2;
 
         width:
             100%;
 
-        text-align:
-            center;
+        min-width:
+            0;
+
+        display:
+            flex;
+
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+
+        justify-content:
+            flex-start;
+
+        gap:
+            8px;
     }
 
+    .cart-quantity {
+        flex-shrink:
+            0;
+    }
+
+    .cart-product-subtotal {
+        width:
+            100%;
+
+        max-width:
+            100%;
+
+        min-width:
+            0;
+
+        display:
+            flex;
+
+        flex-wrap:
+            wrap;
+
+        align-items:
+            baseline;
+
+        gap:
+            4px;
+
+        font-size:
+            17px;
+
+        white-space:
+            normal;
+
+        overflow-wrap:
+            anywhere;
+    }
+
+    .cart-quantity-button {
+        width:
+            34px;
+
+        height:
+            34px;
+    }
+
+}
 
     /* =====================================================
        CATÁLOGO — MÓVIL
@@ -2659,187 +2930,6 @@ a {
 
 
 /* =========================================================
-   RESPONSIVE — CELULAR
-   ========================================================= */
-
-@media (max-width: 600px) {
-
-    .cart-product-card {
-
-        grid-template-columns:
-            78px 1fr;
-
-        gap:
-            14px;
-
-        padding:
-            14px;
-
-        border-radius:
-            16px;
-    }
-
-
-    .cart-product-image {
-
-        width:
-            78px;
-
-        height:
-            78px;
-
-        grid-row:
-            1 / span 2;
-    }
-
-
-    .cart-product-info {
-
-        min-width:
-            0;
-
-        width:
-            100%;
-
-        max-width:
-            100%;
-
-        overflow:
-            hidden;
-    }
-
-
-    .cart-product-name {
-
-        width:
-            100%;
-
-        max-width:
-            100%;
-
-        font-size:
-            16px;
-
-        line-height:
-            1.2;
-
-        overflow-wrap:
-            anywhere;
-
-        word-break:
-            break-word;
-    }
-
-
-    .cart-product-price {
-
-        width:
-            100%;
-
-        max-width:
-            100%;
-
-        font-size:
-            16px;
-
-        line-height:
-            1.2;
-
-        overflow-wrap:
-            break-word;
-    }
-
-
-    .cart-product-price span {
-
-        font-size:
-            10px;
-
-        white-space:
-            nowrap;
-    }
-
-
-    .cart-product-actions {
-
-        grid-column:
-            2;
-
-        width:
-            100%;
-
-        min-width:
-            0;
-
-        display:
-            flex;
-
-        flex-direction:
-            column;
-
-        align-items:
-            flex-start;
-
-        justify-content:
-            flex-start;
-
-        gap:
-            8px;
-    }
-
-
-    .cart-quantity {
-
-        flex-shrink:
-            0;
-    }
-
-
-    .cart-product-subtotal {
-
-        width:
-            100%;
-
-        max-width:
-            100%;
-
-        min-width:
-            0;
-
-        display:
-            flex;
-
-        flex-wrap:
-            wrap;
-
-        align-items:
-            baseline;
-
-        gap:
-            4px;
-
-        font-size:
-            17px;
-
-        white-space:
-            normal;
-
-        overflow-wrap:
-            anywhere;
-    }
-
-
-    .cart-quantity-button {
-
-        width:
-            34px;
-
-        height:
-            34px;
-    }
-
-}
-/* =========================================================
    PRODUCTOS DEL CARRITO
    ========================================================= */
 
@@ -3160,94 +3250,4 @@ a {
 
     font-size:
         18px;
-}
-
-
-/* =========================================================
-   RESPONSIVE — CELULAR
-   ========================================================= */
-
-@media (max-width: 600px) {
-
-    .cart-product-card {
-
-        grid-template-columns:
-            78px 1fr;
-
-        gap:
-            14px;
-
-        padding:
-            14px;
-
-        border-radius:
-            16px;
-    }
-
-
-    .cart-product-image {
-
-        width:
-            78px;
-
-        height:
-            78px;
-
-        grid-row:
-            1 / span 2;
-    }
-
-
-    .cart-product-name {
-
-        font-size:
-            16px;
-    }
-
-
-    .cart-product-price {
-
-        font-size:
-            16px;
-    }
-
-
-    .cart-product-actions {
-
-        grid-column:
-            2;
-
-        flex-direction:
-            row;
-
-        align-items:
-            center;
-
-        justify-content:
-            space-between;
-
-        width:
-            100%;
-
-        gap:
-            10px;
-    }
-
-
-    .cart-product-subtotal {
-
-        font-size:
-            17px;
-    }
-
-
-    .cart-quantity-button {
-
-        width:
-            34px;
-
-        height:
-            34px;
-    }
-
 }
