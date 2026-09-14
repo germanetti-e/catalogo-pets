@@ -662,35 +662,7 @@ function renderCart() {
                     </div>
 
 
-                   /* =====================================================
-   BOTONES ELIMINAR PRODUCTO
-   ===================================================== */
-
-const deleteButtons =
-    document.querySelectorAll(
-        ".cart-delete-button"
-    );
-
-
-deleteButtons.forEach(button => {
-
-    button.addEventListener(
-        "click",
-        () => {
-
-            const productCode =
-                button.dataset.productCode;
-
-
-            removeProduct(
-                productCode
-            );
-
-        }
-    );
-
-});
-
+                   
     /* =====================================================
        ACTUALIZAR INFORMACIÓN
        ===================================================== */
