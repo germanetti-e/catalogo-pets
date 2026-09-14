@@ -1,4 +1,507 @@
 /* =========================================================
+   SABORIEMOS PETS
+   LÓGICA DEL CARRITO
+   ========================================================= */
+
+
+/* =========================================================
+   OBTENER TIPO DE CLIENTE
+   ========================================================= */
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const customerType =
+    params.get("tipo");
+
+
+/* =========================================================
+   CONFIGURACIÓN DE TIPOS DE CLIENTE
+   ========================================================= */
+
+const customerTypes = {
+
+    mayorista: {
+        name: "MAYORISTA",
+        priceField: "precio_mayorista_sin_iva",
+        minimumField: "pedido_minimo_mayorista"
+    },
+
+    distribuidor: {
+        name: "DISTRIBUIDOR",
+        priceField: "precio_distribuidor_sin_iva",
+        minimumField: "pedido_minimo_distribuidor"
+    },
+
+    cliente_final: {
+        name: "CLIENTE FINAL",
+        priceField: "precio_cliente_final_sin_iva",
+        minimumField: "pedido_minimo_cliente_final"
+    }
+
+};
+
+
+/* =========================================================
+   VALIDAR TIPO DE CLIENTE
+   ========================================================= */
+
+const selectedCustomer =
+    customerTypes[customerType] ||
+    customerTypes.cliente_final;
+
+
+/* =========================================================
+   OBTENER ELEMENTOS DEL HTML
+   ========================================================= */
+
+const cartProducts =
+    document.getElementById(
+        "cart-products"
+    );
+
+
+const cartCount =
+    document.getElementById(
+        "cart-count"
+    );
+
+
+const cartSubtotal =
+    document.getElementById(
+        "cart-subtotal"
+    );
+
+
+/* =========================================================
+   OBTENER CARRITO GUARDADO
+   ========================================================= */
+
+let cart = JSON.parse(
+    localStorage.getItem(
+        "saboriemos_cart"
+    ) || "[]"
+);
+
+
+/* =========================================================
+   FORMATEAR PRECIO
+   ========================================================= */
+
+function formatPrice(value) {
+
+    const number =
+        Number(value);
+
+
+    if (isNaN(number)) {
+
+        return "$0";
+
+    }
+
+
+    return new Intl.NumberFormat(
+        "es-CO",
+        {
+            style: "currency",
+            currency: "COP",
+            maximumFractionDigits: 0
+        }
+    ).format(number);
+
+}
+
+
+/* =========================================================
+   AGRUPAR PRODUCTOS
+   ========================================================= */
+
+function getGroupedCart() {
+
+    const grouped = {};
+
+
+    cart.forEach(product => {
+
+        const code =
+            String(product.codigo);
+
+
+        if (!grouped[code]) {
+
+            grouped[code] = {
+
+                product: product,
+
+                quantity: 0
+
+            };
+
+        }
+
+
+        grouped[code].quantity++;
+
+    });
+
+
+    return Object.values(grouped);
+
+}
+
+
+/* =========================================================
+   CALCULAR SUBTOTAL
+   ========================================================= */
+
+function calculateSubtotal() {
+
+    return cart.reduce(
+        (total, product) => {
+
+            const price =
+                Number(
+                    product[
+                        selectedCustomer.priceField
+                    ]
+                ) || 0;
+
+
+            return total + price;
+
+        },
+        0
+    );
+
+}
+
+
+/* =========================================================
+   MOSTRAR CONTADOR DEL CARRITO
+   ========================================================= */
+
+function updateCartCount() {
+
+    if (!cartCount) {
+
+        return;
+
+    }
+
+
+    cartCount.textContent =
+        cart.length;
+
+}
+
+
+/* =========================================================
+   ACTUALIZAR SUBTOTAL Y TOTALES
+   ========================================================= */
+
+function updateSubtotal() {
+
+    if (!cartSubtotal) {
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       SUBTOTAL SIN IVA
+       ===================================================== */
+
+    const subtotal =
+        calculateSubtotal();
+
+
+    cartSubtotal.textContent =
+        formatPrice(subtotal);
+
+
+    /* =====================================================
+       ACTUALIZAR RESUMEN FINAL
+       ===================================================== */
+
+    const totalSubtotal =
+        document.getElementById(
+            "cart-total-subtotal"
+        );
+
+
+    const totalWithIva =
+        document.getElementById(
+            "cart-total-with-iva"
+        );
+
+
+    if (totalSubtotal) {
+
+        totalSubtotal.textContent =
+            formatPrice(subtotal);
+
+    }
+
+
+    /* =====================================================
+       TOTAL CON IVA
+       ===================================================== */
+
+    let total =
+        0;
+
+
+    cart.forEach(product => {
+
+        const price =
+            Number(
+                product[
+                    selectedCustomer.priceField
+                ]
+            ) || 0;
+
+
+        const iva =
+            Number(
+                product.iva
+            ) || 0;
+
+
+        total +=
+            price *
+            (1 + iva / 100);
+
+    });
+
+
+    if (totalWithIva) {
+
+        totalWithIva.textContent =
+            formatPrice(total);
+
+    }
+
+}
+
+
+/* =========================================================
+   ACTUALIZAR ESTADO DE LA COMPRA
+   ========================================================= */
+
+function updatePurchaseStatus() {
+
+    const subtotal =
+        calculateSubtotal();
+
+
+    const minimumOrder =
+        100000;
+
+
+    const freeShipping =
+        250000;
+
+
+    const progressFill =
+        document.getElementById(
+            "cart-progress-fill"
+        );
+
+
+    const progressMarker =
+        document.getElementById(
+            "cart-progress-marker"
+        );
+
+
+    const statusMessage =
+        document.getElementById(
+            "cart-status-message"
+        );
+
+
+    /* =====================================================
+       CALCULAR PROGRESO
+
+       0%     = $0
+       40%    = $100.000
+       100%   = $250.000
+       ===================================================== */
+
+    const progress =
+        Math.min(
+            (subtotal / freeShipping) * 100,
+            100
+        );
+
+
+    if (progressFill) {
+
+        progressFill.style.width =
+            `${progress}%`;
+
+    }
+
+
+    if (progressMarker) {
+
+        progressMarker.style.left =
+            `${progress}%`;
+
+    }
+
+
+    /* =====================================================
+       MENOS DEL PEDIDO MÍNIMO
+       ===================================================== */
+
+    if (subtotal < minimumOrder) {
+
+        const missing =
+            minimumOrder - subtotal;
+
+
+        if (statusMessage) {
+
+            statusMessage.innerHTML = `
+
+                <div class="cart-status-message-title">
+
+                    <span class="cart-status-symbol">
+                        ×
+                    </span>
+
+                    <strong>
+                        Aún no alcanzas el pedido mínimo.
+                    </strong>
+
+                </div>
+
+
+                <p>
+
+                    Te faltan
+
+                    <strong>
+                        ${formatPrice(missing)}
+                    </strong>
+
+                    para realizar tu solicitud.
+
+                </p>
+
+            `;
+
+        }
+
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       PEDIDO MÍNIMO ALCANZADO
+       PERO AÚN NO HAY ENVÍO GRATIS
+       ===================================================== */
+
+    if (
+        subtotal >= minimumOrder &&
+        subtotal < freeShipping
+    ) {
+
+        const missing =
+            freeShipping - subtotal;
+
+
+        if (statusMessage) {
+
+            statusMessage.innerHTML = `
+
+                <div class="cart-status-message-title">
+
+                    <span
+                        class="cart-status-symbol"
+                    >
+                        ✓
+                    </span>
+
+                    <strong>
+                        ¡Pedido mínimo alcanzado!
+                    </strong>
+
+                </div>
+
+
+                <p>
+
+                    Te faltan
+
+                    <strong>
+                        ${formatPrice(missing)}
+                    </strong>
+
+                    para obtener envío GRATIS.
+
+                </p>
+
+            `;
+
+        }
+
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       ENVÍO GRATIS
+       ===================================================== */
+
+    if (subtotal >= freeShipping) {
+
+        if (statusMessage) {
+
+            statusMessage.innerHTML = `
+
+                <div class="cart-status-message-title">
+
+                    <span
+                        class="cart-status-symbol"
+                    >
+                        ✓
+                    </span>
+
+                    <strong>
+                        ¡Tienes envío GRATIS!
+                    </strong>
+
+                </div>
+
+
+                <p>
+
+                    Tu compra cumple con el valor
+                    necesario para obtener envío GRATIS.
+
+                </p>
+
+            `;
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
    MOSTRAR PRODUCTOS DEL CARRITO
    ========================================================= */
 
@@ -228,6 +731,19 @@ function renderCart() {
                         </div>
 
 
+                        <!-- ELIMINAR PRODUCTO -->
+
+                        <button
+                            type="button"
+                            class="cart-delete-button"
+                            data-product-code="${product.codigo}"
+                            aria-label="Eliminar producto"
+                            title="Eliminar producto"
+                        >
+                            🗑️
+                        </button>
+
+
                     </div>
 
 
@@ -283,7 +799,38 @@ function renderCart() {
 
     });
 
+
+    /* =====================================================
+       BOTONES ELIMINAR PRODUCTO
+       ===================================================== */
+
+    const deleteButtons =
+        document.querySelectorAll(
+            ".cart-delete-button"
+        );
+
+
+    deleteButtons.forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                const productCode =
+                    button.dataset.productCode;
+
+
+                removeProduct(
+                    productCode
+                );
+
+            }
+        );
+
+    });
+
 }
+
 
 /* =========================================================
    CAMBIAR CANTIDAD
@@ -421,20 +968,59 @@ function changeQuantity(
 
 
     /* =====================================================
-   GUARDAR CARRITO ACTUALIZADO
-   ===================================================== */
+       GUARDAR CARRITO ACTUALIZADO
+       ===================================================== */
 
-localStorage.setItem(
-    "saboriemos_cart",
-    JSON.stringify(cart)
-);
+    localStorage.setItem(
+        "saboriemos_cart",
+        JSON.stringify(cart)
+    );
 
 
-/* =====================================================
-   VOLVER A RENDERIZAR
-   ===================================================== */
+    /* =====================================================
+       VOLVER A RENDERIZAR
+       ===================================================== */
 
-renderCart();
+    renderCart();
+
+}
+
+
+/* =========================================================
+   ELIMINAR PRODUCTO DEL CARRITO
+   ========================================================= */
+
+function removeProduct(
+    productCode
+) {
+
+    /* =====================================================
+       ELIMINAR TODAS LAS UNIDADES DEL PRODUCTO
+       ===================================================== */
+
+    cart =
+        cart.filter(
+            product =>
+                String(product.codigo) !==
+                String(productCode)
+        );
+
+
+    /* =====================================================
+       GUARDAR CARRITO ACTUALIZADO
+       ===================================================== */
+
+    localStorage.setItem(
+        "saboriemos_cart",
+        JSON.stringify(cart)
+    );
+
+
+    /* =====================================================
+       VOLVER A RENDERIZAR
+       ===================================================== */
+
+    renderCart();
 
 }
 
@@ -465,6 +1051,8 @@ if (backLink) {
     );
 
 }
+
+
 /* =========================================================
    BOTÓN DEL CARRITO EN EL HEADER
    ========================================================= */
@@ -488,6 +1076,7 @@ if (cartButton) {
     );
 
 }
+
 
 /* =========================================================
    PESTAÑA TARIFAS DE ENVÍO
@@ -579,6 +1168,7 @@ if (
     );
 
 }
+
 
 /* =========================================================
    INICIAR CARRITO
