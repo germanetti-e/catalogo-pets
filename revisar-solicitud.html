@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Revisar solicitud | Saboriemos Pets</title>
+
+    <meta
+        name="description"
+        content="Revisa tus datos y productos antes de enviar tu solicitud de abastecimiento."
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/styles.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="header">
+
+        <div class="header-container">
+
+
+            <!-- MENÚ HAMBURGUESA -->
+
+            <button
+                class="menu-button"
+                type="button"
+                aria-label="Abrir menú"
+            >
+
+                ☰
+
+            </button>
+
+
+
+            <!-- LOGO -->
+
+            <a
+                href="index.html"
+                class="logo"
+                aria-label="Saboriemos Pets - Inicio"
+            >
+
+                <img
+                    src="assets/logo/Logo_Saboriemos_Pets-06%20(4).png"
+                    alt="Saboriemos Pets"
+                >
+
+            </a>
+
+
+
+            <!-- CARRITO -->
+
+            <button
+                class="cart-button"
+                type="button"
+                aria-label="Ver carrito"
+            >
+
+                <span class="cart-icon">
+                    🛒
+                </span>
+
+                <span
+                    class="cart-count"
+                    id="cart-count"
+                >
+                    0
+                </span>
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+    ====================================================== -->
+
+    <main class="review-page">
+
+
+        <!-- =================================================
+             ENCABEZADO
+        ================================================== -->
+
+        <section class="review-section">
+
+            <div class="section-container">
+
+
+                <div class="review-heading">
+
+                    <h1>
+                        Revisar solicitud
+                    </h1>
+
+                    <p>
+                        Verifica tus datos y productos antes de
+                        enviar tu solicitud.
+                    </p>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     DATOS DE ENTREGA
+                ================================================== -->
+
+                <section class="review-block">
+
+                    <h2>
+                        Datos de entrega
+                    </h2>
+
+
+                    <div class="review-data">
+
+
+                        <div class="review-data-row">
+
+                            <strong>
+                                Nombre:
+                            </strong>
+
+                            <span id="review-name">
+                                —
+                            </span>
+
+                        </div>
+
+
+
+                        <div class="review-data-row">
+
+                            <strong>
+                                Empresa/Negocio:
+                            </strong>
+
+                            <span id="review-business">
+                                —
+                            </span>
+
+                        </div>
+
+
+
+                        <div class="review-data-row">
+
+                            <strong>
+                                WhatsApp:
+                            </strong>
+
+                            <span id="review-whatsapp">
+                                —
+                            </span>
+
+                        </div>
+
+
+
+                        <div class="review-data-row">
+
+                            <strong>
+                                Dirección:
+                            </strong>
+
+                            <span id="review-address">
+                                —
+                            </span>
+
+                        </div>
+
+
+
+                        <div class="review-data-row">
+
+                            <strong>
+                                Tipo de negocio:
+                            </strong>
+
+                            <span id="review-business-type">
+                                —
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     PRODUCTOS SOLICITADOS
+                ================================================== -->
+
+                <section class="review-block">
+
+                    <h2>
+                        Productos solicitados
+                    </h2>
+
+
+                    <div
+                        class="review-products"
+                        id="review-products"
+                    >
+
+                        <!-- Productos dinámicos -->
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     RESUMEN DE SOLICITUD
+                ================================================== -->
+
+                <section class="review-block review-summary-block">
+
+                    <h2>
+                        Resumen de solicitud
+                    </h2>
+
+
+                    <div class="review-summary">
+
+
+                        <div class="review-summary-row">
+
+                            <span>
+                                Subtotal (sin IVA)
+                            </span>
+
+                            <strong id="review-subtotal">
+                                $0
+                            </strong>
+
+                        </div>
+
+
+
+                        <div class="review-summary-row review-summary-total">
+
+                            <span>
+                                Total (IVA incluido)
+                            </span>
+
+                            <strong id="review-total">
+                                $0
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <p class="review-whatsapp-note">
+
+                        Te redigiremos a WhatsApp para confirmar
+                        tu pedido.
+
+                    </p>
+
+
+
+                    <!-- =================================================
+                         BOTÓN ENVIAR
+                    ================================================== -->
+
+                    <button
+                        type="button"
+                        class="review-submit-button"
+                        id="review-submit-button"
+                    >
+                        Enviar solicitud de abastecimiento
+                    </button>
+
+
+                </section>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         MENÚ INFERIOR
+    ====================================================== -->
+
+    <nav
+        class="bottom-nav"
+        aria-label="Navegación principal"
+    >
+
+
+        <!-- INICIO -->
+
+        <a
+            href="index.html"
+            class="bottom-nav-item"
+        >
+
+            <span class="bottom-nav-icon">
+                ⌂
+            </span>
+
+            <span>
+                Inicio
+            </span>
+
+        </a>
+
+
+
+        <!-- PROMOCIONES -->
+
+        <a
+            href="#"
+            class="bottom-nav-item"
+        >
+
+            <span class="bottom-nav-icon">
+                ✦
+            </span>
+
+            <span>
+                Promociones
+            </span>
+
+        </a>
+
+
+
+        <!-- MIS DATOS -->
+
+        <a
+            href="mis-datos.html"
+            class="bottom-nav-item"
+        >
+
+            <span class="bottom-nav-icon">
+                ♙
+            </span>
+
+            <span>
+                Mis datos
+            </span>
+
+        </a>
+
+
+    </nav>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="js/header.js"></script>
+
+    <script src="js/revisar-solicitud.js"></script>
+
+
+</body>
+
+</html>
