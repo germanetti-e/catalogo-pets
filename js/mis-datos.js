@@ -5,6 +5,34 @@
 
 
 /* =========================================================
+   OBTENER TIPO DE CLIENTE
+   ========================================================= */
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const urlCustomerType =
+    params.get("tipo");
+
+
+/* =========================================================
+   GUARDAR TIPO DE CLIENTE
+   ========================================================= */
+
+if (urlCustomerType) {
+
+    localStorage.setItem(
+        "saboriemos_customer_type",
+        urlCustomerType
+    );
+
+}
+
+
+/* =========================================================
    OBTENER FORMULARIO
    ========================================================= */
 
@@ -56,7 +84,7 @@ function saveCustomerData() {
 
 
     /* =====================================================
-       GUARDAR EN LOCALSTORAGE
+       GUARDAR DATOS
        ===================================================== */
 
     localStorage.setItem(
