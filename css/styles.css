@@ -3367,3 +3367,132 @@ a {
         white-space: nowrap;
     }
 }
+
+/* =========================================================
+   RESUMEN FINAL DEL CARRITO
+   ========================================================= */
+
+.cart-total-summary {
+
+    width: 100%;
+    max-width: 620px;
+
+    margin: 24px auto 0;
+
+    padding: 20px 22px;
+
+    box-sizing: border-box;
+
+    border-top: 1px solid var(--border);
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+
+}
+
+
+/* =========================================================
+   FILAS
+   ========================================================= */
+
+.cart-total-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    font-size: 16px;
+
+    color: var(--text-soft);
+
+}
+
+
+.cart-total-row strong {
+
+    font-size: 17px;
+
+    color: var(--text);
+
+    white-space: nowrap;
+
+}
+
+
+/* =========================================================
+   TOTAL FINAL
+   ========================================================= */
+
+.cart-total-final {
+
+    padding-top: 12px;
+
+    border-top: 1px solid var(--border);
+
+    font-size: 18px;
+
+    color: var(--text);
+
+}
+
+
+.cart-total-final strong {
+
+    font-size: 21px;
+
+    color: var(--petrol);
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .cart-total-summary {
+
+        max-width: 100%;
+
+        margin-top: 20px;
+
+        padding: 18px 4px 8px;
+
+    }
+
+
+    .cart-total-row {
+
+        font-size: 15px;
+
+    }
+
+
+    .cart-total-row strong {
+
+        font-size: 16px;
+
+    }
+
+
+    .cart-total-final {
+
+        font-size: 17px;
+
+    }
+
+
+    .cart-total-final strong {
+
+        font-size: 20px;
+
+    }
+
+}
