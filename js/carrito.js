@@ -194,18 +194,16 @@ function updateCartCount() {
 }
 
 
-/* =========================================================
-   MOSTRAR SUBTOTAL
-   ========================================================= */
-
 function updateSubtotal() {
 
     if (!cartSubtotal) {
-
         return;
-
     }
 
+
+    /* =====================================================
+       SUBTOTAL SIN IVA
+       ===================================================== */
 
     const subtotal =
         calculateSubtotal();
@@ -213,6 +211,68 @@ function updateSubtotal() {
 
     cartSubtotal.textContent =
         formatPrice(subtotal);
+
+
+    /* =====================================================
+       ACTUALIZAR RESUMEN FINAL
+       ===================================================== */
+
+    const totalSubtotal =
+        document.getElementById(
+            "cart-total-subtotal"
+        );
+
+    const totalWithIva =
+        document.getElementById(
+            "cart-total-with-iva"
+        );
+
+
+    if (totalSubtotal) {
+
+        totalSubtotal.textContent =
+            formatPrice(subtotal);
+
+    }
+
+
+    /* =====================================================
+       TOTAL CON IVA
+       ===================================================== */
+
+    let total =
+        0;
+
+
+    cart.forEach(product => {
+
+        const price =
+            Number(
+                product[
+                    selectedCustomer.priceField
+                ]
+            ) || 0;
+
+
+        const iva =
+            Number(
+                product.iva
+            ) || 0;
+
+
+        total +=
+            price *
+            (1 + iva / 100);
+
+    });
+
+
+    if (totalWithIva) {
+
+        totalWithIva.textContent =
+            formatPrice(total);
+
+    }
 
 }
 
