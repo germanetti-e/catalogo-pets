@@ -78,36 +78,7 @@ let selectedCustomer =
 
 
 /*
- * Si la URL no contiene el tipo de cliente,
- * intentamos recuperarlo del primer producto
- * guardado en el carrito.
- */
-
-if (!selectedCustomer && cart.length > 0) {
-
-    const firstProduct =
-        cart[0];
-
-
-    if (
-        firstProduct.customerType &&
-        customerTypes[
-            firstProduct.customerType
-        ]
-    ) {
-
-        selectedCustomer =
-            customerTypes[
-                firstProduct.customerType
-            ];
-
-    }
-
-}
-
-
-/*
- * Si todavía no existe un tipo de cliente,
+ * Si no viene el tipo de cliente en la URL,
  * utilizamos Cliente final como respaldo.
  */
 
@@ -153,7 +124,6 @@ function formatPrice(value) {
    ========================================================= */
 
 function renderCustomerData() {
-
 
     const reviewName =
         document.getElementById(
@@ -318,7 +288,8 @@ function renderProducts() {
 
 
     /* =====================================================
-       GENERAR PRODUCTOS
+       GENERAR LISTA DE PRODUCTOS
+       SIN IMÁGENES
        ===================================================== */
 
     reviewProducts.innerHTML =
@@ -345,50 +316,11 @@ function renderProducts() {
                 quantity;
 
 
-            const iva =
-                Number(
-                    product.iva
-                ) || 0;
-
-
             return `
 
                 <article
                     class="review-product-card"
                 >
-
-
-                    <!-- IMAGEN -->
-
-                    <div class="review-product-image">
-
-                        ${
-                            product.imagen
-
-                                ? `
-
-                                    <img
-                                        src="assets/assets/productos/${String(product.imagen).trim()}.png"
-                                        alt="${product.producto || ""}"
-                                        loading="lazy"
-                                    >
-
-                                  `
-
-                                : `
-
-                                    <div class="review-product-image-placeholder">
-                                        🐾
-                                    </div>
-
-                                  `
-                        }
-
-                    </div>
-
-
-
-                    <!-- INFORMACIÓN -->
 
                     <div class="review-product-info">
 
@@ -400,7 +332,6 @@ function renderProducts() {
                         </h3>
 
 
-
                         <p class="review-product-price">
 
                             <strong>
@@ -408,15 +339,10 @@ function renderProducts() {
                             </strong>
 
                             <span>
-                                + IVA (${iva}%)
-                            </span>
-
-                            <span class="price-unit-label">
                                 Precio unidad
                             </span>
 
                         </p>
-
 
 
                         <p class="review-product-minimum">
@@ -427,7 +353,6 @@ function renderProducts() {
                         </p>
 
 
-
                         <p class="review-product-subtotal">
 
                             <strong>
@@ -435,10 +360,6 @@ function renderProducts() {
                             </strong>
 
                             <span>
-                                + IVA (${iva}%)
-                            </span>
-
-                            <span class="price-unit-label">
                                 Precio unidades pedidas
                             </span>
 
@@ -446,7 +367,6 @@ function renderProducts() {
 
 
                     </div>
-
 
                 </article>
 
