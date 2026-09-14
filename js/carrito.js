@@ -1024,6 +1024,22 @@ function removeProduct(
 
 }
 
+/* =========================================================
+   BOTÓN ENVIAR SOLICITUD DE COMPRA
+   ========================================================= */
+
+const purchaseRequestButton =
+    document.getElementById(
+        "purchase-request-button"
+    );
+
+
+if (purchaseRequestButton) {
+
+    purchaseRequestButton.href =
+        `mis-datos.html?tipo=${customerType}`;
+
+}
 
 /* =========================================================
    BOTÓN CONTINUAR COMPRANDO
