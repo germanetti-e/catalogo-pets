@@ -26,8 +26,27 @@ const params =
     );
 
 
-const customerType =
+const urlCustomerType =
     params.get("tipo");
+
+
+const savedCustomerType =
+    localStorage.getItem(
+        "saboriemos_customer_type"
+    );
+
+
+/*
+ * Primero utilizamos el tipo que venga en la URL.
+ *
+ * Si no existe, utilizamos el tipo guardado
+ * anteriormente cuando el cliente pasó por Mis datos.
+ */
+
+const customerType =
+    urlCustomerType ||
+    savedCustomerType ||
+    "cliente_final";
 
 
 /* =========================================================
@@ -78,6 +97,15 @@ const customerTypes = {
 
 
 /* =========================================================
+   DETERMINAR CLIENTE SELECCIONADO
+   ========================================================= */
+
+const selectedCustomer =
+    customerTypes[customerType] ||
+    customerTypes.cliente_final;
+
+
+/* =========================================================
    OBTENER DATOS DEL CLIENTE
    ========================================================= */
 
@@ -99,22 +127,6 @@ const cart =
             "saboriemos_cart"
         ) || "[]"
     );
-
-
-/* =========================================================
-   DETERMINAR TIPO DE CLIENTE
-   ========================================================= */
-
-let selectedCustomer =
-    customerTypes[customerType];
-
-
-if (!selectedCustomer) {
-
-    selectedCustomer =
-        customerTypes.cliente_final;
-
-}
 
 
 /* =========================================================
@@ -307,7 +319,7 @@ function renderProducts() {
 
 
     /* =====================================================
-       AGRUPAR
+       AGRUPAR PRODUCTOS
        ===================================================== */
 
     const groupedCart =
@@ -328,6 +340,13 @@ function renderProducts() {
             const quantity =
                 item.quantity;
 
+
+            /*
+             * IMPORTANTE:
+             * Utilizamos exactamente el mismo campo
+             * de precio que corresponde al tipo de cliente
+             * seleccionado en el carrito.
+             */
 
             const price =
                 Number(
@@ -602,7 +621,7 @@ async function saveRequestToGoogleSheets() {
 
 
         customerType:
-            customerType || "cliente_final",
+            customerType,
 
 
         products:
@@ -693,52 +712,42 @@ function createWhatsAppMessage(
 
 
     let message =
-
         `Hola, quiero confirmar mi solicitud de compra.\n\n`;
 
 
     message +=
-
         `Solicitud: ${requestId}\n`;
 
 
     message +=
-
         `Tipo de cliente: ${selectedCustomer.name}\n\n`;
 
 
     message +=
-
         `*Datos de entrega*\n`;
 
 
     message +=
-
         `Nombre: ${customerData.name || ""}\n`;
 
 
     message +=
-
         `Empresa/Negocio: ${customerData.business || ""}\n`;
 
 
     message +=
-
         `WhatsApp: ${customerData.whatsapp || ""}\n`;
 
 
     message +=
-
         `Dirección: ${customerData.address || ""}\n`;
 
 
     message +=
-
         `Tipo de negocio: ${customerData.businessType || ""}\n\n`;
 
 
     message +=
-
         `*Productos solicitados*\n`;
 
 
@@ -886,10 +895,6 @@ if (reviewSubmitButton) {
                     "No pudimos registrar tu solicitud. Por favor intenta nuevamente."
                 );
 
-
-                /* =========================================
-                   RESTAURAR BOTÓN
-                   ========================================= */
 
                 reviewSubmitButton.disabled =
                     false;
