@@ -4174,3 +4174,355 @@ a {
     }
 
 }
+
+/* =========================================================
+   REVISAR SOLICITUD
+   ========================================================= */
+
+.review-page {
+    width: 100%;
+    background: var(--white);
+}
+
+.review-section {
+    width: 100%;
+}
+
+.review-section .section-container {
+    max-width: 624px;
+    padding-top: 36px;
+    padding-bottom: 40px;
+}
+
+
+/* =========================================================
+   ENCABEZADO
+   ========================================================= */
+
+.review-heading {
+    margin-bottom: 30px;
+}
+
+.review-heading h1 {
+    margin: 0 0 10px;
+    color: var(--petrol);
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+}
+
+.review-heading p {
+    margin: 0;
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   BLOQUES
+   ========================================================= */
+
+.review-block {
+    width: 100%;
+    margin-bottom: 30px;
+    padding: 22px;
+    box-sizing: border-box;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--white);
+}
+
+.review-block h2 {
+    margin: 0 0 20px;
+    color: var(--petrol);
+    font-size: 21px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+
+/* =========================================================
+   DATOS DE ENTREGA
+   ========================================================= */
+
+.review-data {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.review-data-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.45;
+}
+
+.review-data-row strong {
+    flex: 0 0 auto;
+    color: #897831;
+    font-weight: 700;
+}
+
+.review-data-row span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   PRODUCTOS SOLICITADOS
+   ========================================================= */
+
+.review-products {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.review-product-card {
+    width: 100%;
+    padding: 17px 0;
+    border-top: 1px solid var(--border);
+    box-sizing: border-box;
+}
+
+.review-product-card:first-child {
+    padding-top: 0;
+    border-top: none;
+}
+
+.review-product-info {
+    width: 100%;
+}
+
+.review-product-name {
+    margin: 0 0 9px;
+    color: var(--petrol);
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.review-product-price,
+.review-product-minimum,
+.review-product-subtotal {
+    margin: 5px 0 0;
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.review-product-price strong,
+.review-product-subtotal strong {
+    color: var(--text);
+    font-weight: 700;
+}
+
+.review-product-price span,
+.review-product-subtotal span {
+    margin-left: 4px;
+}
+
+.review-product-minimum {
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   CARRITO VACÍO
+   ========================================================= */
+
+.review-empty {
+    padding: 10px 0;
+}
+
+.review-empty p {
+    margin: 0;
+    color: var(--text);
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   RESUMEN
+   ========================================================= */
+
+.review-summary-block {
+    margin-bottom: 0;
+}
+
+.review-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.review-summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    color: #897831;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.review-summary-row strong {
+    color: var(--text);
+    font-size: 17px;
+    white-space: nowrap;
+}
+
+.review-summary-total {
+    padding-top: 13px;
+    border-top: 1px solid var(--border);
+    font-size: 18px;
+}
+
+.review-summary-total strong {
+    color: var(--petrol);
+    font-size: 21px;
+}
+
+
+/* =========================================================
+   MENSAJE WHATSAPP
+   ========================================================= */
+
+.review-whatsapp-note {
+    margin: 22px 0 16px;
+    color: var(--petrol);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.45;
+    text-align: center;
+}
+
+
+/* =========================================================
+   BOTÓN ENVIAR SOLICITUD
+   ========================================================= */
+
+.review-submit-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 52px;
+    padding: 14px 20px;
+    box-sizing: border-box;
+    border: 1px solid var(--petrol);
+    border-radius: 10px;
+    background: var(--petrol);
+    color: var(--sage);
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.25;
+    text-align: center;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.review-submit-button:hover {
+    background: var(--green);
+    border-color: var(--green);
+}
+
+.review-submit-button:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================================================
+   MÓVIL
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .review-section .section-container {
+        width: calc(100% - 40px);
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .review-heading {
+        margin-bottom: 24px;
+    }
+
+    .review-heading h1 {
+        font-size: 30px;
+    }
+
+    .review-heading p {
+        font-size: 14px;
+    }
+
+    .review-block {
+        margin-bottom: 22px;
+        padding: 18px;
+        border-radius: 10px;
+    }
+
+    .review-block h2 {
+        margin-bottom: 17px;
+        font-size: 19px;
+    }
+
+    .review-data {
+        gap: 11px;
+    }
+
+    .review-data-row {
+        font-size: 14px;
+    }
+
+    .review-product-card {
+        padding: 15px 0;
+    }
+
+    .review-product-name {
+        font-size: 16px;
+    }
+
+    .review-product-price,
+    .review-product-minimum,
+    .review-product-subtotal {
+        font-size: 13px;
+    }
+
+    .review-summary-row {
+        font-size: 15px;
+    }
+
+    .review-summary-row strong {
+        font-size: 16px;
+    }
+
+    .review-summary-total {
+        font-size: 17px;
+    }
+
+    .review-summary-total strong {
+        font-size: 20px;
+    }
+
+    .review-whatsapp-note {
+        margin-top: 20px;
+        font-size: 12px;
+    }
+
+    .review-submit-button {
+        min-height: 50px;
+        padding: 13px 16px;
+        font-size: 15px;
+    }
+
+}
