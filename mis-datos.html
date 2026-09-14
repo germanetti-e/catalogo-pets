@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Mis datos | Saboriemos Pets</title>
+
+    <meta
+        name="description"
+        content="Mis datos de cliente en Saboriemos Pets."
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/styles.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+     ===================================================== -->
+
+<header class="header">
+
+    <div class="header-container">
+
+        <button
+            class="menu-button"
+            type="button"
+            aria-label="Abrir menú"
+        >
+            ☰
+        </button>
+
+
+        <a
+            href="index.html"
+            class="logo"
+            aria-label="Saboriemos Pets - Inicio"
+        >
+
+            <img
+                src="assets/logo/Logo_Saboriemos_Pets-06%20(4).png"
+                alt="Saboriemos Pets"
+            >
+
+        </a>
+
+
+        <button
+            class="cart-button"
+            type="button"
+            aria-label="Ver carrito"
+        >
+
+            <span class="cart-icon">
+                🛒
+            </span>
+
+            <span
+                class="cart-count"
+                id="cart-count"
+            >
+                0
+            </span>
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     CONTENIDO — MIS DATOS
+     ===================================================== -->
+
+<main class="data-page">
+
+
+    <section class="data-section">
+
+        <div class="section-container">
+
+
+            <!-- =========================================
+                 ENCABEZADO
+                 ========================================= -->
+
+            <div class="data-heading">
+
+                <h1>
+                    Mis datos
+                </h1>
+
+            </div>
+
+
+
+            <!-- =========================================
+                 FORMULARIO
+                 ========================================= -->
+
+            <form
+                class="data-form"
+                id="data-form"
+            >
+
+
+                <!-- =====================================
+                     NOMBRE
+                     ===================================== -->
+
+                <div class="form-field">
+
+                    <label for="customer-name">
+                        Nombre
+                    </label>
+
+                    <input
+                        type="text"
+                        id="customer-name"
+                        name="name"
+                        autocomplete="name"
+                    >
+
+                </div>
+
+
+
+                <!-- =====================================
+                     EMPRESA / NEGOCIO
+                     ===================================== -->
+
+                <div class="form-field">
+
+                    <label for="customer-business">
+                        Empresa / negocio
+                    </label>
+
+                    <input
+                        type="text"
+                        id="customer-business"
+                        name="business"
+                        autocomplete="organization"
+                    >
+
+                </div>
+
+
+
+                <!-- =====================================
+                     WHATSAPP
+                     ===================================== -->
+
+                <div class="form-field">
+
+                    <label for="customer-whatsapp">
+                        WhatsApp
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="customer-whatsapp"
+                        name="whatsapp"
+                        autocomplete="tel"
+                    >
+
+                </div>
+
+
+
+                <!-- =====================================
+                     DIRECCIÓN DE ENTREGA
+                     ===================================== -->
+
+                <div class="form-field">
+
+                    <label for="customer-address">
+                        Dirección de entrega
+                    </label>
+
+                    <input
+                        type="text"
+                        id="customer-address"
+                        name="address"
+                        autocomplete="street-address"
+                    >
+
+                </div>
+
+
+
+                <!-- =====================================
+                     TIPO DE NEGOCIO
+                     ===================================== -->
+
+                <div class="form-field">
+
+                    <label for="customer-business-type">
+                        Tipo de negocio
+                    </label>
+
+                    <select
+                        id="customer-business-type"
+                        name="businessType"
+                    >
+
+                        <option value="">
+                            Selecciona una opción
+                        </option>
+
+                        <option value="Veterinaria">
+                            Veterinaria
+                        </option>
+
+                        <option value="Distribuidora">
+                            Distribuidora
+                        </option>
+
+                        <option value="Tienda Agropecuaria">
+                            Tienda Agropecuaria
+                        </option>
+
+                        <option value="Tienda">
+                            Tienda
+                        </option>
+
+                        <option value="Minimercado">
+                            Minimercado
+                        </option>
+
+                        <option value="Otro">
+                            Otro
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- =====================================
+                     OBSERVACIONES
+                     ===================================== -->
+
+                <div class="form-field">
+
+                    <label for="customer-observations">
+                        Observaciones
+                    </label>
+
+                    <textarea
+                        id="customer-observations"
+                        name="observations"
+                        rows="4"
+                    ></textarea>
+
+                </div>
+
+
+
+                <!-- =====================================
+                     GUARDAR
+                     ===================================== -->
+
+                <button
+                    type="submit"
+                    class="save-data-button"
+                >
+                    Guardar mis datos
+                </button>
+
+
+            </form>
+
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     NAVEGACIÓN INFERIOR
+     ===================================================== -->
+
+<nav
+    class="bottom-nav"
+    aria-label="Navegación principal"
+>
+
+
+    <a
+        href="index.html"
+        class="bottom-nav-item"
+    >
+
+        <span class="bottom-nav-icon">
+            ⌂
+        </span>
+
+        <span>
+            Inicio
+        </span>
+
+    </a>
+
+
+    <a
+        href="#"
+        class="bottom-nav-item"
+    >
+
+        <span class="bottom-nav-icon">
+            ✦
+        </span>
+
+        <span>
+            Promociones
+        </span>
+
+    </a>
+
+
+    <a
+        href="mis-datos.html"
+        class="bottom-nav-item active"
+    >
+
+        <span class="bottom-nav-icon">
+            ♙
+        </span>
+
+        <span>
+            Mis datos
+        </span>
+
+    </a>
+
+
+</nav>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+
+<script src="js/header.js"></script>
+
+
+</body>
+
+</html>
