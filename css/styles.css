@@ -3508,3 +3508,144 @@ a {
     }
 
 }
+
+/* =========================================================
+   SOLICITUD DE COMPRA
+   ========================================================= */
+
+.purchase-request {
+
+    width: 100%;
+
+    margin-top: 22px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+/* =========================================================
+   BOTÓN ENVIAR SOLICITUD
+   ========================================================= */
+
+.purchase-request-button {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    min-height: 52px;
+
+    padding: 14px 20px;
+
+    box-sizing: border-box;
+
+    border-radius: 10px;
+
+    background-color: #23575d;
+
+    color: #C2C29D;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    border: none;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+
+}
+
+
+/* =========================================================
+   INTERACCIÓN
+   ========================================================= */
+
+.purchase-request-button:hover {
+
+    background-color: #1d4b50;
+
+}
+
+
+.purchase-request-button:active {
+
+    transform: scale(0.98);
+
+}
+
+
+/* =========================================================
+   AVISO DE DISPONIBILIDAD
+   ========================================================= */
+
+.purchase-request-note {
+
+    width: 100%;
+
+    margin: 0;
+
+    color: #23575d;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    line-height: 1.45;
+
+    text-align: center;
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .purchase-request {
+
+        margin-top: 20px;
+
+        gap: 10px;
+
+    }
+
+
+    .purchase-request-button {
+
+        min-height: 50px;
+
+        padding: 13px 16px;
+
+        font-size: 16px;
+
+    }
+
+
+    .purchase-request-note {
+
+        font-size: 12px;
+
+        line-height: 1.45;
+
+    }
+
+}
