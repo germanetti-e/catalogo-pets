@@ -662,72 +662,34 @@ function renderCart() {
                     </div>
 
 
-                    <!-- CANTIDAD Y PRECIO DE UNIDADES PEDIDAS -->
+                   /* =====================================================
+   BOTONES ELIMINAR PRODUCTO
+   ===================================================== */
 
-                    <div class="cart-product-actions">
-
-
-                        <div class="cart-quantity">
-
-
-                            <button
-                                type="button"
-                                class="cart-quantity-button"
-                                data-action="decrease"
-                                data-product-code="${product.codigo}"
-                                aria-label="Disminuir cantidad"
-                            >
-                                −
-                            </button>
+const deleteButtons =
+    document.querySelectorAll(
+        ".cart-delete-button"
+    );
 
 
-                            <span
-                                class="cart-quantity-value"
-                            >
-                                ${quantity}
-                            </span>
+deleteButtons.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            const productCode =
+                button.dataset.productCode;
 
 
-                            <button
-                                type="button"
-                                class="cart-quantity-button"
-                                data-action="increase"
-                                data-product-code="${product.codigo}"
-                                aria-label="Aumentar cantidad"
-                            >
-                                +
-                            </button>
+            removeProduct(
+                productCode
+            );
 
+        }
+    );
 
-                        </div>
-
-
-                        <div class="cart-product-subtotal">
-
-                            <strong>
-                                ${formatPrice(productSubtotal)}
-                            </strong>
-
-                            <span>
-                                + IVA (${iva}%)
-                            </span>
-
-                            <span class="price-unit-label">
-                                Precio unidades pedidas
-                            </span>
-
-                        </div>
-
-
-                    </div>
-
-
-                </article>
-
-            `;
-
-        }).join("");
-
+});
 
     /* =====================================================
        ACTUALIZAR INFORMACIÓN
